@@ -225,6 +225,47 @@
     .big-hj{font-size:34px}
     .lucky{grid-template-columns:1fr 1fr}
   }
+  .easy{display:block;margin-top:11px;padding:11px 13px;border-radius:10px;background:var(--gold-soft);font-size:15px;line-height:1.7;color:var(--ink)}
+  .easy::before{content:"👉 쉽게 말하면";display:block;font-size:12.5px;font-weight:700;color:var(--gold);margin-bottom:3px;letter-spacing:.02em}
+  .sum-hero{background:var(--surface);border:1.5px solid var(--gold);border-radius:16px;padding:20px 20px 18px;box-shadow:var(--shadow)}
+  .sum-hero .one{font-family:"Noto Serif KR",serif;font-weight:700;font-size:21px;line-height:1.5;margin:0 0 6px}
+  .sum-hero .sub{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin:0}
+  .sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+  .sum-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow)}
+  .sum-card h4{margin:0 0 8px;font-size:15px;font-family:"Noto Serif KR",serif}
+  .sum-card ul{margin:0;padding-left:18px;font-size:14.5px;line-height:1.75}
+  .sum-card li{margin-bottom:4px}
+  .sum-card.good h4{color:var(--accent)} .sum-card.care h4{color:var(--self)} .sum-card.do h4{color:var(--gold)}
+  .gloss{margin-top:12px;font-size:13.5px;line-height:1.8;color:var(--ink-soft);background:var(--surface);border:1px dashed var(--line-strong);border-radius:12px;padding:12px 15px}
+  .gloss b{color:var(--ink)}
+  .flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}
+  .ycard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:var(--shadow);position:relative}
+  .ycard.best{border:1.5px solid var(--accent)} .ycard.now{border:1.5px solid var(--self)}
+  .ycard .yh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .ycard .yy{font-family:"Noto Serif KR",serif;font-weight:900;font-size:19px}
+  .ycard .ygz{font-family:"Noto Serif KR",serif;color:var(--ink-soft);font-size:14px}
+  .ycard .ytag{position:absolute;top:-10px;right:12px;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:2px 9px;border-radius:20px}
+  .ycard.now .ytag{background:var(--self)}
+  .ycard .ytheme{font-weight:700;font-size:15px;margin:6px 0 8px}
+  .meter{display:grid;grid-template-columns:44px 1fr 30px;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);margin:3px 0}
+  .meter .mt{height:7px;border-radius:6px;background:var(--line);overflow:hidden}
+  .meter .mf{height:100%;border-radius:6px;background:var(--accent)} .meter.m .mf{background:var(--gold)}
+  .meter b{color:var(--ink);text-align:right}
+  .ycard dl{margin:9px 0 0;font-size:13.5px;line-height:1.65}
+  .ycard dt{float:left;font-weight:700;color:var(--ink-soft);width:44px} .ycard dd{margin:0 0 3px 48px}
+  .mo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px;margin-top:12px}
+  .mo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5}
+  .mo .mh{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+  .mo .ms{font-size:12px;font-weight:700;padding:1px 7px;border-radius:10px;background:var(--gold-soft);color:var(--gold)}
+  .mo.hi .ms{background:var(--accent);color:#fff} .mo.lo .ms{background:rgba(194,90,58,.15);color:var(--self)}
+  .mo .mgz{color:var(--ink-faint);font-size:12px;font-family:"Noto Serif KR",serif}
+  .w-rows{display:grid;gap:10px;margin-top:12px}
+  .w-row{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .w-row h4{margin:0 0 6px;font-size:15px;font-family:"Noto Serif KR",serif}
+  .w-row p{margin:0;font-size:14.5px;line-height:1.75}
+  .w-row ul{margin:4px 0 0;padding-left:18px;font-size:14.5px;line-height:1.75}
+  .meter.wide{grid-template-columns:118px 1fr 40px;font-size:13.5px}
+  .bowl{display:flex;gap:6px;margin:6px 0 2px}.bowl span{flex:1;height:9px;border-radius:5px;background:var(--line)}.bowl span.on{background:var(--gold)}
 </style>
 
 <div class="wrap">
@@ -441,6 +482,379 @@ function sipCounts(p){
   }};
 }
 function topGroup(g){var k=null,mx=-1;Object.keys(g).forEach(function(x){if(g[x]>mx){mx=g[x];k=x;}});return k;}
+/* ══════════════ 쉬운 말 사전 ══════════════ */
+var GRP_EASY={"비겁":"내 편·동료(나와 같은 편)","식상":"말·재능·표현력","재성":"돈·성과·현실 감각","관성":"일·책임·규칙","인성":"도움·공부·지원군"};
+var GRP_GOOD={
+  "비겁":"자기 주관이 뚜렷하고, 남에게 휘둘리지 않고 버티는 힘이 있어요.",
+  "식상":"말하고 만들고 보여주는 재주가 있어요. 아이디어를 밖으로 꺼내 결과물로 만드는 데 강해요.",
+  "재성":"돈 감각·현실 감각이 좋아요. 뭘 하면 이득이 되는지 빨리 알아채요.",
+  "관성":"맡은 일을 책임지고 끝까지 해내요. 조직·규칙 안에서 신뢰를 얻어요.",
+  "인성":"배우는 속도가 빠르고, 필요할 때 도와주는 사람(윗사람·선배)이 나타나는 편이에요."};
+var GRP_LACK={
+  "비겁":"‘내 편’ 기운이 비어 있어요. 혼자 다 짊어지기 쉬우니 믿을 동료·파트너를 일부러 곁에 두세요.",
+  "식상":"속마음을 밖으로 잘 안 꺼내요. 생각을 글·말로 정리해 드러내는 연습이 도움이 돼요.",
+  "재성":"돈을 좇는 기질은 약한 편이에요. 한 방보다 월급·전문성처럼 꾸준한 수입이 맞아요.",
+  "관성":"틀에 묶이는 걸 답답해할 수 있어요. 스스로 마감·규칙을 정해두면 흔들림이 줄어요.",
+  "인성":"기댈 곳 없이 혼자 부딪히는 편이에요. 멘토·스승을 찾아가면 길이 빨리 열려요."};
+var SIP_EASY={"비견":"내 힘으로 밀고 나가는 해","겁재":"경쟁이 붙고 돈이 새기 쉬운 해","식신":"하고 싶은 걸 펼치고 즐기는 해","상관":"아이디어가 터지지만 말조심할 해","편재":"기회와 돈이 크게 움직이는 해","정재":"성실하게 한 만큼 돌아오는 해","편관":"압박이 크지만 버티면 성장하는 해","정관":"자리·인정·책임이 따라오는 해","편인":"혼자 공부·재정비하기 좋은 해","정인":"도와주는 사람과 문서 운이 드는 해"};
+var STEM_ONE={"甲":"곧게 뻗는 큰 나무 — 한번 정하면 밀고 가는 리더형","乙":"부드럽지만 끈질긴 덩굴 — 환경에 맞춰 결국 뻗어 나가는 적응형","丙":"한낮의 태양 — 밝고 화끈해서 어디서나 눈에 띄는 분위기 메이커형","丁":"촛불 — 조용히 오래 타는 집중력과 속정의 장인형","戊":"큰 산 — 쉽게 흔들리지 않는 듬직한 중심형","己":"기름진 밭 — 실속 있게 쌓고 사람을 키워내는 살림꾼형","庚":"원석·도끼 — 결단 빠르고 원칙을 지키는 개혁가형","辛":"다듬은 보석 — 감각 좋고 완벽을 추구하는 섬세한 전문가형","壬":"큰 바다 — 스케일 크고 흐름을 읽는 전략가형","癸":"이슬비 — 조용하지만 총명하고 직관이 좋은 관찰자형"};
+function topList(g){var mx=-1;Object.keys(g).forEach(function(x){if(g[x]>mx)mx=g[x];});return Object.keys(g).filter(function(x){return g[x]===mx;});}
+function summarize(a,p,gender,ex){
+  var sc=sipCounts(p), g=sc.g, tops=topList(g), dayG=p.dG, yong=a.yongsin.final, Y=YONGSIN_GUIDE[yong];
+  var lacks=Object.keys(g).filter(function(k){return g[k]===0;});
+  var good=[], care=[], todo=[];
+  tops.slice(0,2).forEach(function(k){good.push(GRP_GOOD[k]);});
+  if(a.strength.is_strong) good.push("에너지가 센 편이라 추진력·체력이 좋아요.");
+  else good.push("주변 분위기를 잘 읽고 사람들과 부딪히지 않고 어울려요.");
+  if(a.strength.is_strong) care.push("힘이 넘쳐서 고집·과속이 될 수 있어요. 한 박자 쉬고 남 의견을 듣는 게 이득이에요.");
+  else care.push("기운이 여린 편(힘 "+a.strength.ratio.toFixed(0)+"%)이라, 욕심만큼 일을 벌이면 먼저 지쳐요. 체력과 컨디션이 성과의 한계선이에요.");
+  lacks.slice(0,2).forEach(function(k){care.push(GRP_LACK[k]);});
+  if(!a.strength.is_strong && g["재성"]>=2) care.push("돈·일감이 들어오는 만큼 감당할 힘이 부족해지기 쉬워요. 크게 벌이기보다 지키는 쪽이 유리해요.");
+  todo.push("부족한 기운은 <b>"+ELEMENTS[yong].ko+"</b>. "+Y.act+"처럼 일상에서 채워보세요.");
+  todo.push("곁에 두면 좋은 것: <b>"+Y.color+"</b> 계열, "+Y.item+".");
+  if(!a.strength.is_strong) todo.push("혼자 끌고 가기보다 <b>믿을 사람과 나눠서</b> 하는 구조를 만드세요.");
+  else todo.push("힘을 쏟을 <b>한 가지 목표</b>를 정해 에너지를 흘려보내세요.");
+  var now=ex.saeun[0];
+  return {one:STEM_ONE[GAN[dayG]], tops:tops, good:good, care:care, todo:todo,
+    year:now.year+"년은 "+(SIP_EASY[now.sip]||"흐름을 살피는 해")+"예요."};
+}
+function renderSummary(sm,a){
+  var st=a.strength;
+  var sub="강한 쪽: <b>"+sm.tops.map(function(k){return GRP_EASY[k];}).join(", ")+"</b>"+(sm.tops.length>1?" (비슷하게 강함)":"")+
+    " · 전체 힘: <b>"+(st.is_strong?"강한 편":"여린 편")+"</b> · 채우면 좋은 기운: <b>"+ELEMENTS[a.yongsin.final].ko+"</b>";
+  function list(arr){return '<ul>'+arr.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+  return '<div class="sum-hero"><p class="one">'+esc(sm.one)+'</p><p class="sub">'+sub+'</p></div>'+
+    '<div class="sum-grid">'+
+      '<div class="sum-card good"><h4>✔ 이런 게 강점이에요</h4>'+list(sm.good)+'</div>'+
+      '<div class="sum-card care"><h4>⚠ 이런 건 조심해요</h4>'+list(sm.care)+'</div>'+
+      '<div class="sum-card do"><h4>→ 그래서 이렇게 하세요</h4>'+list(sm.todo)+'</div>'+
+    '</div>'+
+    '<div class="explain">📅 '+esc(sm.year)+' 아래에 항목별로 더 자세히 풀어뒀어요.</div>'+
+    '<div class="gloss"><b>용어 쉽게 보기</b><br>일간 = 나 자신 · 오행 = 나무·불·흙·쇠·물 다섯 기운 · 신강/신약 = 내 기운이 센가 여린가 · 용신 = 나에게 부족해서 채우면 좋은 기운 · 비겁 = 내 편·동료 · 식상 = 표현·재능 · 재성 = 돈·성과 · 관성 = 일·책임(여성은 남편·이성) · 인성 = 도움·공부 · 육합 = 짝이 맞는 글자(끌어당김) · 삼합 = 한 팀이 되는 글자(도와줌) · 충 = 정면으로 부딪히는 글자(변동) · 정관/정재 = 안정형 인연 · 편관/편재 = 끌림형 인연 · 대운 = 10년 단위 흐름 · 세운 = 1년 단위 흐름</div>';
+}
+/* ══════════════ 앞으로의 흐름 · 재물 상세 ══════════════ */
+var SIP_GRP={"비견":"비겁","겁재":"비겁","식신":"식상","상관":"식상","편재":"재성","정재":"재성","편관":"관성","정관":"관성","편인":"인성","정인":"인성"};
+function SIP_DETAIL(sip,male){
+  var D={
+   "비견":{m:"들어온 만큼 나가기 쉬워요. 수입을 ‘내 이름으로’ 새로 만드는 시도는 좋아요.",w:"내가 주도하는 일, 독립적인 프로젝트에 힘이 실려요.",l:"친구 같은 편한 인연. 연애보다 내 일에 마음이 가요.",c:"동업, 돈 빌려주기"},
+   "겁재":{m:"지출·손실 기운이 커요. 큰 투자·보증·충동 구매는 한 번 더 따져보세요.",w:"경쟁이 치열해지는 승부처예요.",l:"경쟁자가 생기거나 자존심 싸움이 나기 쉬워요.",c:"충동 지출, 동업 분쟁"},
+   "식신":{m:"재능이 돈이 되는 흐름이에요(식신생재). 부업·콘텐츠 수익에 좋아요.",w:"하고 싶던 일을 펼치기 좋아요. 창작·기획 성과가 나요.",l:"편하고 즐거운 연애. 먹고 노는 데서 인연이 생겨요.",c:"게으름, 과식"},
+   "상관":{m:"아이디어로 벌지만 기복이 있어요. 계약서는 꼼꼼히.",w:"변화·이직·새 프로젝트 기운. 튀는 기획이 먹혀요.",l:male?"표현력이 좋아져 인기가 올라요.":"기존 관계가 흔들리기 쉬워요. 말다툼 조심.",c:"말실수, 윗사람과 충돌"},
+   "편재":{m:"큰돈이 움직이는 해예요. 기회가 크지만 변동성도 커요.",w:"확장·거래·영업에서 성과가 나요.",l:male?"이성 인연이 활발해요.":"활동 반경이 넓어져 새 만남이 생겨요.",c:"무리한 확장"},
+   "정재":{m:"꾸준한 수입과 저축 성과가 나요. 모으기 좋은 해.",w:"성실하게 한 만큼 결실이 와요.",l:male?"결혼으로 이어지기 좋은 인연.":"안정적이고 현실적인 관계.",c:"지나친 보수성"},
+   "편관":{m:"책임 때문에 나가는 돈(비용·세금·수리비)이 늘어요.",w:"큰 책임·시험·압박. 버티면 한 단계 올라가요.",l:male?"여유가 없어 연애가 뒤로 밀려요.":"강하게 끌리는 인연이 와요.",c:"과로, 건강"},
+   "정관":{m:"안정적인 수입. 자리·직함이 돈으로 이어져요.",w:"승진·합격·인정받기 좋아요.",l:male?"주변 인정으로 좋은 소개가 들어와요.":"결혼으로 이어지기 좋은 인연.",c:"틀에 갇히는 답답함"},
+   "편인":{m:"돈보다 공부·재정비의 해. 새 수익원 준비 기간이에요.",w:"자격증·연구·방향 전환 준비에 좋아요.",l:"혼자 있고 싶어져요. 억지로 만날 필요 없어요.",c:"생각 과다, 우울감"},
+   "정인":{m:"문서·계약·부동산 쪽 운이 들어요. 도장 찍을 일이 생겨요.",w:"윗사람 도움, 학업·자격 성과.",l:"잘 챙겨주는 인연이 와요.",c:"남에게 기대는 버릇"}};
+  return D[sip]||{m:"",w:"",l:"",c:""};
+}
+function flowScore(a,p,gi,ji){
+  var s=58, grp=SIP_GRP[sipsin(p.dG,gi)], grpJ=SIP_GRP[sipsin(p.dG,JI_BONGI[ji])];
+  var W=a.strength.is_strong?{"식상":12,"재성":12,"관성":6,"인성":-6,"비겁":-6}:{"인성":14,"비겁":10,"식상":-2,"재성":0,"관성":-8};
+  s+=W[grp]||0; s+=Math.round((W[grpJ]||0)/2);
+  if(ELEM_KO[GAN_ELEM[gi]]===a.yongsin.final) s+=6;
+  var r=branchRel(p.dJ,ji); if(r==="충")s-=9; else if(r==="육합"||r==="삼합")s+=6; else if(r==="형"||r==="해")s-=4;
+  return Math.max(30,Math.min(95,s));
+}
+function moneyScore(a,p,gi,ji){
+  var s=55, sip=sipsin(p.dG,gi), grp=SIP_GRP[sip], sipJ=sipsin(p.dG,JI_BONGI[ji]), weak=!a.strength.is_strong;
+  function v(sp){var g=SIP_GRP[sp];
+    if(g==="재성")return weak?9:16; if(g==="식상")return 10; if(sp==="정인")return 4; if(sp==="편인")return -2;
+    if(g==="관성")return weak?-5:2; if(sp==="겁재")return weak?-6:-12; if(sp==="비견")return weak?2:-6; return 0;}
+  s+=v(sip)+Math.round(v(sipJ)/2);
+  if(branchRel(p.dJ,ji)==="충")s-=6;
+  return Math.max(30,Math.min(95,s));
+}
+function themeFor(sip,weak){
+  if(weak&&sip==="비견") return "내 편 기운이 들어와 힘이 차오르는 해";
+  if(weak&&sip==="겁재") return "힘은 차오르지만 돈은 새기 쉬운 해";
+  if(!weak&&sip==="정인") return "도움은 오지만 게을러지기 쉬운 해";
+  if(!weak&&sip==="편인") return "생각이 많아지고 속도가 느려지는 해";
+  return SIP_EASY[sip];
+}
+function futureFlow(a,p,gender,nowY,nowM){
+  var weak=!a.strength.is_strong;
+  var male=(gender==="male"), years=[], months=[];
+  for(var y=nowY;y<=nowY+5;y++){
+    var idx=fmod(y-1984,60),gi=fmod(idx,10),ji=fmod(idx,12),sip=sipsin(p.dG,gi);
+    years.push({year:y,gz:GAN[gi]+JI[ji],sip:sip,theme:themeFor(sip,weak),score:flowScore(a,p,gi,ji),money:moneyScore(a,p,gi,ji),
+      rel:branchRel(p.dJ,ji),det:SIP_DETAIL(sip,male),isNow:y===nowY});
+  }
+  for(var k=0;k<12;k++){
+    var mm=nowM+k, yy=nowY+Math.floor((mm-1)/12); mm=((mm-1)%12)+1;
+    var mp=computePillars(yy,mm,20,12,0,undefined), msip=sipsin(p.dG,mp.mG);
+    months.push({y:yy,m:mm,gz:mp.month,sip:msip,theme:(themeFor(msip,weak)||"").replace(/해$/,"달"),score:flowScore(a,p,mp.mG,mp.mJ),money:moneyScore(a,p,mp.mG,mp.mJ)});
+  }
+  var best=years.slice().sort(function(x,y){return y.score-x.score;})[0].year;
+  return {years:years,months:months,best:best};
+}
+function renderFuture(ff,dae,age,bY){
+  var cur=dae.list.filter(function(c){return age>=c.age&&age<c.age+10;})[0];
+  var next=dae.list.filter(function(c){return c.age>age;})[0];
+  var head='<div class="explain">'+(cur?'지금은 <strong class="hl">'+esc(cur.gz)+' 대운('+cur.age+'~'+(cur.age+9)+'세)</strong> — '+(SIP_EASY[cur.sip]||'').replace(/해$/,'10년')+'을 지나는 중이에요. ':'')+
+    (next?'<b>'+(bY+next.age)+'년('+next.age+'세)</b>부터 새 10년 <strong class="hl">'+esc(next.gz)+'</strong>이 시작돼요 → '+(SIP_EASY[next.sip]||'').replace(/해$/,'10년')+'.':'')+
+    '<span class="easy">큰 흐름(10년) 위에 해마다의 흐름이 얹혀요. 아래 점수는 <b>나에게 필요한 기운이 들어오는 정도</b>를 계산한 참고값이에요. 점수가 낮은 해는 “나쁜 해”가 아니라 <b>조심하면서 준비할 해</b>예요.</span></div>';
+  var html=head+'<div class="flow-grid">';
+  ff.years.forEach(function(y){
+    var cls=y.isNow?' now':(y.year===ff.best?' best':''), tag=y.isNow?'올해':(y.year===ff.best?'6년 중 최고':'');
+    html+='<div class="ycard'+cls+'">'+(tag?'<span class="ytag">'+tag+'</span>':'')+
+      '<div class="yh"><span class="yy">'+y.year+'</span><span class="ygz">'+esc(y.gz)+' · '+esc(y.sip)+'</span></div>'+
+      '<div class="ytheme">'+esc(y.theme||'')+'</div>'+
+      '<div class="meter"><span>전체운</span><div class="mt"><div class="mf" style="width:'+y.score+'%"></div></div><b>'+y.score+'</b></div>'+
+      '<div class="meter m"><span>재물운</span><div class="mt"><div class="mf" style="width:'+y.money+'%"></div></div><b>'+y.money+'</b></div>'+
+      '<dl><dt>💰 돈</dt><dd>'+y.det.m+'</dd><dt>💼 일</dt><dd>'+y.det.w+'</dd><dt>💞 연애</dt><dd>'+y.det.l+'</dd><dt>⚠ 조심</dt><dd>'+y.det.c+(y.rel==="충"?', 이사·이동·변동수':'')+'</dd></dl></div>';
+  });
+  html+='</div>';
+  html+='<div class="eyebrow" style="margin-top:22px"><span class="ko" style="font-size:15px">앞으로 12개월</span><span class="rule"></span></div><div class="mo-grid">';
+  ff.months.forEach(function(m){var c=m.score>=70?' hi':(m.score<52?' lo':'');
+    html+='<div class="mo'+c+'"><div class="mh"><span>'+m.y+'.'+m.m+'</span><span class="ms">'+m.score+'</span></div><div class="mgz">'+esc(m.gz)+' · '+esc(m.sip)+'</div>'+esc(m.theme)+'<div class="mgz" style="margin-top:4px">💰 재물 '+m.money+(m.money>=68?' ↑':m.money<52?' ↓ 지출 주의':'')+'</div></div>';});
+  html+='</div><p class="luck-hint">※ 오른쪽 숫자는 <b>전체운</b>(100점 기준, 높을수록 좋음). 초록 = 70점 이상 흐름 좋은 달, 붉은색 = 52점 미만 조심할 달, 베이지 = 보통. 💰 재물 점수는 따로 봐요. 사주의 달은 절기 기준이라 매달 4~8일쯤 바뀌어요.</p>';
+  return html;
+}
+function renderWealth(a,p,ff,dae,age){
+  var sc=sipCounts(p), d=sc.d, g=sc.g, weak=!a.strength.is_strong, jae=g["재성"];
+  var lvl=jae===0?2:(!weak?(jae>=2?5:4):(jae>=3?2:3));
+  var bowlTxt=jae===0?"사주에 재물 글자가 없어요. 돈 복이 없다는 뜻이 아니라, <b>한 방보다 월급·전문성으로 꾸준히 쌓는 그릇</b>이에요."
+    :!weak?"재물 글자가 "+jae+"개, 내 힘도 센 편이라 <b>돈을 감당하고 굴릴 그릇</b>이 있어요. 적극적으로 벌고 굴려도 버티는 구조예요."
+    :"재물 글자가 "+jae+"개로 <b>돈이 들어올 기회는 충분</b>한데, 내 힘이 "+Math.round(a.strength.ratio)+"%로 여려요. 명리학에서 말하는 <b>재다신약</b> 경향으로, 쉽게 말해 <b>들어오는 돈보다 그릇(체력·시간·관리력)이 먼저 차는 구조</b>예요. 그래서 버는 것보다 <b>그릇을 키우는 게</b> 돈을 늘리는 방법이에요.";
+  var style=[];
+  if(d["정재"]>0) style.push("<b>정재 "+d["정재"]+"개</b> — 월급·고정 수입·꾸준히 모으는 돈");
+  if(d["편재"]>0) style.push("<b>편재 "+d["편재"]+"개</b> — 사업·거래·투자처럼 크게 움직이는 돈");
+  if(g["식상"]>0&&jae>0) style.push("<b>식상 → 재성 연결(식상생재)</b> — 말·기획·콘텐츠 같은 재능이 돈으로 바뀌는 구조");
+  if(g["인성"]>0) style.push("<b>인성 "+g["인성"]+"개</b> — 문서·계약·자격증·부동산처럼 ‘서류’로 들어오는 돈");
+  if(g["관성"]>0) style.push("<b>관성 "+g["관성"]+"개</b> — 조직·직함·신용에서 나오는 돈");
+  if(!style.length) style.push("뚜렷한 재물 통로 글자가 적어요. 내 기술 하나를 깊게 파는 게 곧 통로예요.");
+  var leak=[];
+  if(d["겁재"]>0) leak.push("<b>겁재</b>가 있어 남 때문에 나가는 돈(빌려주기·동업·경쟁)이 생기기 쉬워요.");
+  if(g["비겁"]>=3) leak.push("같은 편 기운이 많아 모임·경조사·‘같이 하자’로 돈이 새기 쉬워요.");
+  if(weak&&jae>=2) leak.push("일을 벌일수록 <b>체력·시간이 먼저 바닥나서</b> 놓치는 돈이 생겨요. 과로 → 병원비 → 기회 손실 순서를 조심.");
+  if(d["상관"]>0) leak.push("<b>상관</b>이 있어 기분·자존심 때문에 쓰는 돈, 급하게 하는 결정이 새는 구멍이 될 수 있어요.");
+  if(!leak.length) leak.push("크게 새는 구멍은 안 보여요. 다만 들어온 돈의 ‘정해진 자리’를 만들어두면 더 단단해져요.");
+  var todo=weak?["벌이를 늘리기 전에 <b>일을 덜어줄 사람·시스템</b>부터 (위임·자동화·파트너)","큰 결정은 <b>혼자 말고 믿을 사람과 한 번 더</b> 검토","한 번에 크게보다 <b>나눠서, 검증하면서</b> 늘리기","컨디션이 곧 수입 — <b>쉬는 날을 일정에 먼저</b> 박아두기"]
+    :["모이는 돈을 <b>굴리는 계획</b>을 미리 세워두기","확장할 때 <b>브레이크 역할 해줄 사람</b> 두기","잘 될 때 욕심 과속 주의 — <b>목표 금액에서 멈추는 규칙</b>"];
+  var yrs=ff.years.slice().sort(function(x,y){return y.money-x.money;});
+  var good=yrs.slice(0,2).map(function(y){return '<b>'+y.year+'년</b>('+y.money+'점, '+esc(y.sip)+') — '+y.det.m;});
+  var bad=yrs.slice(-1).map(function(y){return '<b>'+y.year+'년</b>('+y.money+'점, '+esc(y.sip)+') — '+y.det.m;});
+  var cur=dae.list.filter(function(c){return age>=c.age&&age<c.age+10;})[0];
+  var bars=''; for(var i=1;i<=5;i++) bars+='<span'+(i<=lvl?' class="on"':'')+'></span>';
+  return '<div class="w-rows">'+
+    '<div class="w-row"><h4>🏺 돈 그릇</h4><div class="bowl">'+bars+'</div><p>'+bowlTxt+'</p></div>'+
+    '<div class="w-row"><h4>💸 돈이 들어오는 통로</h4><ul><li>'+style.join('</li><li>')+'</li></ul></div>'+
+    '<div class="w-row"><h4>🕳 돈이 새는 구멍</h4><ul><li>'+leak.join('</li><li>')+'</li></ul></div>'+
+    (cur?'<div class="w-row"><h4>📆 지금 10년의 돈 흐름 ('+esc(cur.gz)+' · '+esc(cur.sip)+')</h4><p>'+SIP_DETAIL(cur.sip,true).m.replace(/해예요/g,'시기예요').replace(/좋은 해/g,'좋은 시기').replace(/의 해\./g,'의 시기.')+'</p></div>':'')+
+    '<div class="w-row"><h4>📈 앞으로 6년 중 돈 흐름</h4><ul><li>좋은 해: '+good.join('</li><li>좋은 해: ')+'</li><li>조심할 해: '+bad.join('')+'</li></ul></div>'+
+    '<div class="w-row"><h4>✅ 그래서 이렇게</h4><ul><li>'+todo.join('</li><li>')+'</li></ul></div>'+
+  '</div><div class="warn" style="margin-top:12px"><b>참고</b> · 재물운은 사주 구조로 본 <b>성향과 흐름</b>이에요. 실제 투자·계약 판단은 숫자와 전문가 검토를 기준으로 하세요.</div>';
+}
+/* ══════════════ 프리미엄 풀이: 성격 · 애정 · 건강 · 집 ══════════════ */
+var EL_IDX={"목":0,"화":1,"토":2,"금":3,"수":4};
+var EL_NAME={"목":"나무(木)","화":"불(火)","토":"흙(土)","금":"쇠(金)","수":"물(水)"};
+function elCounts(a){var f=a.five_elements;return {"목":f.wood,"화":f.fire,"토":f.earth,"금":f.metal,"수":f.water};}
+function ul(arr){return '<ul>'+arr.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+function wrow(icon,title,body){return '<div class="w-row"><h4>'+icon+' '+title+'</h4>'+body+'</div>';}
+
+/* ── 성격 ── */
+var STEM_TRAITS={
+ "甲":{g:["한번 정하면 끝까지 밀고 가는 뚝심","남을 이끌고 챙기는 리더십","거짓말 못 하는 정직함"],b:["굽히질 못해서 부러지는 고집","내 방식이 맞다는 확신이 강함","부탁을 못 하고 혼자 떠안음"],s:"스트레스를 받으면 더 고집스러워지고 말수가 줄어요."},
+ "乙":{g:["어떤 환경에서도 살아남는 적응력","사람 사이를 부드럽게 잇는 친화력","현실 감각·눈치가 빠름"],b:["속으로 비교하고 신경 쓰는 게 많음","싫은 소리를 못 해서 끌려다님","겉은 순한데 속으로 오래 담아둠"],s:"스트레스를 받으면 겉으론 웃지만 속으로 쌓아두다 한 번에 지쳐요."},
+ "丙":{g:["밝고 시원한 에너지","숨김없는 솔직함","사람을 모으는 존재감"],b:["욱하고 금방 식는 기복","벌여놓고 마무리가 약함","주목받지 못하면 서운함"],s:"스트레스를 받으면 확 터뜨리고 바로 잊어버리는 편이에요."},
+ "丁":{g:["한 가지에 깊게 파고드는 집중력","섬세한 배려와 속정","감각·분위기를 읽는 능력"],b:["예민해서 작은 말에 오래 상처받음","걱정이 많고 생각이 꼬리를 묾","서운함을 말 안 하고 티로 냄"],s:"스트레스를 받으면 혼자 곱씹으며 잠을 설쳐요."},
+ "戊":{g:["쉽게 안 흔들리는 듬직함","사람을 품는 포용력","약속을 지키는 신뢰감"],b:["변화를 싫어하고 느림","속을 잘 안 드러내 답답해 보임","한번 굳으면 안 바뀌는 고집"],s:"스트레스를 받으면 입을 닫고 움직이지 않아요."},
+ "己":{g:["꼼꼼하고 실속 있는 살림 능력","사람을 키우고 챙기는 자상함","현실적인 판단"],b:["걱정·계산이 많아 결정이 늦음","남 눈치를 봐서 할 말을 못 함","자기 몫을 잘 못 챙김"],s:"스트레스를 받으면 걱정이 많아지고 소화가 먼저 탈 나요."},
+ "庚":{g:["결단이 빠른 추진력","의리와 원칙","불의를 못 참는 정의감"],b:["말이 직설적이라 상처를 줌","내 기준에 안 맞으면 차갑게 끊음","쉬는 법을 모름"],s:"스트레스를 받으면 말이 날카로워지고 관계를 정리하려 해요."},
+ "辛":{g:["세련된 감각과 안목","완성도를 끝까지 챙기는 꼼꼼함","자존심 있는 품위"],b:["완벽주의라 스스로를 괴롭힘","비판에 예민함","시작 전 준비만 길어짐"],s:"스트레스를 받으면 예민해지고 사소한 흠이 크게 보여요."},
+ "壬":{g:["큰 그림을 보는 스케일","흐름을 읽는 지혜","어디든 적응하는 활동력"],b:["한곳에 오래 못 머무는 산만함","감정을 숨겨 속을 알기 어려움","일을 너무 크게 벌림"],s:"스트레스를 받으면 밖으로 돌거나 딴 일로 빠져나가요."},
+ "癸":{g:["조용한 총명함과 직관","참을성","남의 마음을 읽는 섬세함"],b:["걱정·상상이 많아 불안해짐","속마음을 말 안 해 오해받음","결정적인 순간에 망설임"],s:"스트레스를 받으면 혼자 숨어서 생각에 잠겨요."}};
+var GRP_OUT={"비겁":"당당하고 독립적인 사람","식상":"말 잘하고 재밌는 사람, 아이디어가 많은 사람","재성":"싹싹하고 실속 있는 사람, 일 잘하는 사람","관성":"반듯하고 믿음직한 사람, 예의 바른 사람","인성":"차분하고 똑똑한 사람, 배울 게 많은 사람"};
+var ILJI_IN={"비견":"내 방식대로 하고 싶은 자존심","겁재":"절대 지고 싶지 않은 마음","식신":"편하게 즐기며 살고 싶은 마음","상관":"인정받고 싶고, 틀에 갇히기 싫은 마음","편재":"자유롭게 움직이고 싶은 마음","정재":"확실하고 안정적인 걸 원하는 마음","편관":"늘 긴장하고 책임져야 한다는 압박","정관":"반듯하게 잘해야 한다는 마음","편인":"나만의 세계에 있고 싶은 마음","정인":"누군가에게 인정받고 보살핌받고 싶은 마음"};
+var GRP_FIX_OVER={
+ "비겁":["고집이 세질 수 있어요","중요한 결정 전 <b>딱 한 사람에게 의견 묻기</b>"],
+ "식상":["말이 행동보다 앞설 수 있어요","말하기 전 <b>3초 멈추기</b>, 약속은 <b>메모로 남기기</b>"],
+ "재성":["일을 너무 많이 벌려요","새 일 하나 추가하기 전에 <b>하나 끝내기</b>"],
+ "관성":["스스로를 너무 몰아붙여요","하루 끝에 <b>잘한 것 3개 적기</b>"],
+ "인성":["생각만 하고 실행이 늦어요","생각 10분 뒤 <b>바로 할 수 있는 것 1개 실행</b>"]};
+function personality(a,p){
+  var dG=GAN[p.dG], T=STEM_TRAITS[dG], sc=sipCounts(p), g=sc.g, ec=elCounts(a);
+  var outer=GRP_OUT[SIP_GRP[sipsin(p.dG,p.mG)]]||"무난한 사람";
+  var inner=ILJI_IN[sipsin(p.dG,JI_BONGI[p.dJ])]||"";
+  var STEM_FIX={"甲":["고집 때문에 기회를 놓칠 수 있어요.","‘내가 틀릴 수도 있다’를 <b>하루 한 번</b> 떠올리기"],"乙":["남과 비교하며 속으로 지쳐요.","비교 대상은 <b>작년의 나</b>로만 정하기"],"丙":["벌여놓고 마무리가 약해요.","새로 시작하기 전 <b>끝낼 날짜부터</b> 적기"],"丁":["작은 말에 오래 상처받아요.","서운하면 <b>그날 안에 한 문장으로</b> 말하기"],"戊":["변화를 미루다 타이밍을 놓쳐요.","한 달에 한 번 <b>새로운 것 하나</b> 해보기"],"己":["걱정이 많아 결정이 늦어요.","결정은 <b>장단점 3개씩</b> 적고 그날 끝내기"],"庚":["직설적인 말이 상처를 줘요.","지적 전에 <b>‘이건 좋았어’</b> 먼저 말하기"],"辛":["완벽주의로 시작이 늦어요.","<b>80%에서 일단 공개</b>하고 고치기"],"壬":["일을 너무 크게 벌려요.","동시에 진행하는 일은 <b>3개까지만</b>"],"癸":["걱정·상상이 불안을 키워요.","걱정은 <b>종이에 적고, 할 수 있는 것 1개만</b> 하기"]};
+  var fixes=[{why:STEM_FIX[dG][0],how:STEM_FIX[dG][1]}];
+  Object.keys(g).forEach(function(k){if(g[k]>=3)fixes.push({why:GRP_FIX_OVER[k][0],how:GRP_FIX_OVER[k][1]});});
+  Object.keys(g).forEach(function(k){if(g[k]===0)fixes.push({why:GRP_LACK[k].split(".")[0]+".",how:GRP_LACK[k].split(".").slice(1).join(".").trim()||""});});
+  if(!a.strength.is_strong) fixes.push({why:"부탁을 거절하지 못해 에너지가 새요.",how:"“생각해보고 알려줄게”를 <b>기본 대답</b>으로 만들기"});
+  else fixes.push({why:"내 속도로 남을 끌고 가서 주변이 지칠 수 있어요.",how:"회의·대화에서 <b>상대가 먼저 말하게</b> 하기"});
+  Object.keys(ec).forEach(function(k){if(ec[k]>=3)fixes.push({why:EL_NAME[k]+" 기운이 넘쳐 "+({"목":"고집·욕심","화":"성급함·감정 기복","토":"느림·걱정","금":"날카로움·냉정함","수":"생각 과다·우유부단"})[k]+"이 나오기 쉬워요.",how:({"목":"계획을 <b>반만</b> 세우고 나머지는 흐름에 맡기기","화":"화가 나면 <b>답장은 다음 날</b>","토":"결정 기한을 <b>날짜로</b> 정해두기","금":"지적하기 전에 <b>좋은 점 하나 먼저</b> 말하기","수":"고민은 <b>종이에 적고</b> 덮기"})[k]});});
+  return {T:T,outer:outer,inner:inner,fixes:fixes.slice(0,6)};
+}
+function renderPersonality(pp,a){
+  var T=pp.T;
+  return '<div class="w-rows">'+
+    wrow("🪞","남들이 보는 나 vs 실제 나",'<p>밖에서는 <b>'+pp.outer+'</b>으로 보이기 쉬워요. 그런데 속에는 <b>'+pp.inner+'</b>이 있어요. 이 차이 때문에 “생각보다 예민하다/생각보다 단단하다”는 말을 듣기도 해요.</p>')+
+    wrow("✔","타고난 장점",ul(T.g))+
+    wrow("⚠","스스로 힘들게 만드는 버릇",ul(T.b))+
+    wrow("🌧","스트레스 받을 때 나는",'<p>'+T.s+' 이럴 땐 <b>'+YONGSIN_GUIDE[a.yongsin.final].act+'</b>처럼 부족한 기운('+ELEMENTS[a.yongsin.final].ko+')을 채우는 활동이 회복이 빨라요.</p>')+
+    wrow("🛠","고치면 인생이 편해지는 습관 처방",'<ul>'+pp.fixes.map(function(f){return '<li>'+f.why+(f.how?' → '+f.how:'')+'</li>';}).join('')+'</ul>')+
+  '</div>';
+}
+
+/* ── 애정운 ── */
+var STEM_LOVE={"甲":"좋아하면 직진하고 챙겨주는 보호자형. 대신 내 뜻대로 하려는 경향이 있어요.","乙":"상대에게 맞춰주고 오래 가는 헌신형. 서운함을 말 안 하고 쌓아두는 게 약점이에요.","丙":"표현이 확실하고 뜨거운 연애형. 빨리 달아오르고 빨리 식을 수 있어요.","丁":"은은하게 오래 챙기는 속정형. 서운하면 말보다 티로 드러내요.","戊":"한번 마음 주면 변치 않는 듬직형. 표현이 서툴러 무뚝뚝해 보여요.","己":"현실적으로 챙기고 살림 잘하는 실속형. 걱정이 많아 잔소리가 될 수 있어요.","庚":"의리 있고 확실한 연애형. 말이 직설적이라 상처를 줄 수 있어요.","辛":"취향과 기준이 분명한 까다로운 연애형. 한번 실망하면 회복이 느려요.","壬":"자유롭고 스케일 큰 연애형. 구속을 싫어하고 속마음을 잘 안 보여줘요.","癸":"조용히 마음을 쏟는 순정형. 불안하면 혼자 상상하며 괴로워해요."};
+var GANHAP={0:5,5:0,1:6,6:1,2:7,7:2,3:8,8:3,4:9,9:4};
+function loveReport(a,p,gender,nowY){
+  var male=gender==="male", sc=sipCounts(p), d=sc.d, g=sc.g;
+  var starG=male?"재성":"관성", star=g[starG];
+  var zheng=male?d["정재"]:d["정관"], pian=male?d["편재"]:d["편관"];
+  var starTxt;
+  if(star===0) starTxt="사주에 "+(male?"아내·이성":"남편·이성")+"을 뜻하는 글자가 <b>없어요</b>. 인연이 없다는 게 아니라, <b>운에서 그 글자가 들어오는 해에 인연이 몰려오는</b> 타입이에요. 아래 ‘인연이 들어오는 해’가 특히 중요해요.";
+  else starTxt=(male?"아내·이성":"남편·이성")+" 글자가 <b>"+star+"개</b>("+(male?"정재":"정관")+" "+zheng+" · "+(male?"편재":"편관")+" "+pian+")예요. "+
+    (zheng>=pian?"<b>안정적이고 반듯한 상대</b>와 인연이 깊어요.":"<b>강하게 끌리고 자극적인 상대</b>에게 마음이 가기 쉬워요. 끌림과 좋은 사람은 다를 수 있다는 걸 기억하세요.")+(star>=3?" 인연이 많은 편이라 <b>고르는 눈</b>이 핵심이에요.":"");
+  var iljiSip=sipsin(p.dG,JI_BONGI[p.dJ]);
+  var partner=GAN[GANHAP[p.dG]], pe=ELEM_KO[GAN_ELEM[GANHAP[p.dG]]];
+  var yong=a.yongsin.final;
+  var yk={0:1,1:0,2:11,11:2,3:10,10:3,4:9,9:4,5:8,8:5,6:7,7:6}[p.yJ];
+  var SAM=[[8,0,4],[5,9,1],[2,6,10],[11,3,7]].filter(function(x){return x.indexOf(p.yJ)>=0;})[0].filter(function(x){return x!==p.yJ;});
+  var chung=(p.yJ+6)%12;
+  var goodAnimals=[ANIMAL[yk]].concat(SAM.map(function(x){return ANIMAL[x];}));
+  var warn=[];
+  if(!male&&g["식상"]>=2) warn.push("표현력(식상)이 강해 <b>상대를 가르치거나 지적</b>하는 말투가 나오기 쉬워요. 칭찬을 먼저 하세요.");
+  if(male&&g["비겁"]>=2) warn.push("같은 편 기운이 강해 <b>연애보다 친구·일이 먼저</b>가 되기 쉬워요.");
+  if(star>=3) warn.push("여러 인연 사이에서 <b>결정을 미루다 놓칠</b> 수 있어요.");
+  if(star===0) warn.push("인연이 올 때까지 <b>일에만 몰두</b>하다 타이밍을 놓치지 않게, 좋은 해엔 모임에 나가세요.");
+  if(!a.strength.is_strong) warn.push("상대에게 <b>너무 맞춰주다 지치는</b> 패턴을 조심하세요. 원하는 걸 말로 하는 연습이 필요해요.");
+  else warn.push("내 기준이 강해 <b>상대가 숨 막혀</b> 할 수 있어요. 결정권을 절반 넘겨주세요.");
+  var hits=[];
+  for(var y=nowY;y<nowY+10&&hits.length<4;y++){
+    var idx=fmod(y-1984,60),gi=fmod(idx,10),ji=fmod(idx,12),sip=sipsin(p.dG,gi),grp=SIP_GRP[sip],r=branchRel(p.dJ,ji),why=[];
+    var STAR_EASY=male?{"정재":"아내 글자 중 <b>안정형</b>(정재)이 오는 해 — 성실하고 결혼 상대로 좋은 인연이 들어와요","편재":"이성 글자 중 <b>끌림형</b>(편재)이 오는 해 — 활발하고 매력적인 인연이 많아지지만 가벼울 수도 있어요"}
+                      :{"정관":"남편 글자 중 <b>안정형</b>(정관)이 오는 해 — 반듯하고 믿음직한, 결혼 상대로 좋은 사람이 들어와요","편관":"남편 글자 중 <b>끌림형</b>(편관)이 오는 해 — 강하게 끌리는 사람이 와요. 설렘은 크지만 밀당·갈등도 있을 수 있어요"};
+    if(grp===starG) why.push(STAR_EASY[sip]);
+    if(r==="육합") why.push("배우자 자리와 <b>짝이 딱 맞는 해</b>(육합) — 자석처럼 붙는 인연, 사귀는 사이라면 관계가 깊어지기 좋아요");
+    if(r==="삼합") why.push("배우자 자리와 <b>한 팀이 되는 해</b>(삼합) — 소개·모임처럼 주변을 통해 인연이 이어지기 좋아요");
+    if(why.length) hits.push('<b>'+y+'년</b> — '+why.join(" / ")+((male&&sip==="정재")||(!male&&sip==="정관")?' 💍 <b>결혼운이 가장 좋은 해</b>':''));
+  }
+  if(!hits.length) hits.push("향후 10년 안에 뚜렷한 인연 글자는 적어요. 대신 소개·모임처럼 <b>사람을 통한 만남</b>이 열쇠예요.");
+  var tips=["연애 중이라면: "+(ILJI_EASY_G[iljiSip]||"서로 맞춰가는")+" 관계가 되기 쉬우니, <b>"+(ILJI_TIP[iljiSip]||"대화 시간을 정해두세요")+"</b>","솔로라면: 부족한 기운("+ELEMENTS[yong].ko+")이 있는 곳 — <b>"+YONGSIN_GUIDE[yong].act+"</b> — 에서 인연이 생기기 좋아요.","데이트·만남 때 <b>"+YONGSIN_GUIDE[yong].color+"</b> 계열 옷·소품이 기운을 올려줘요."];
+  return {style:STEM_LOVE[GAN[p.dG]],starTxt:starTxt,iljiSip:iljiSip,partner:partner,pe:pe,yong:yong,good:goodAnimals,chung:ANIMAL[chung],warn:warn,hits:hits,tips:tips};
+}
+var ILJI_EASY_G={"비견":"친구 같은 대등한","겁재":"서로 지기 싫어하는 팽팽한","식신":"편안하고 잘 챙겨주는","상관":"대화는 잘 통하지만 말로 부딪히기 쉬운","편재":"활동적이고 자유로운","정재":"성실하고 현실적인","편관":"긴장감 있고 끌림이 강한","정관":"예의 바르고 안정적인","편인":"속을 다 안 보여주는 독특한","정인":"서로 보살펴주는"};
+var ILJI_TIP={"비견":"각자의 시간을 존중하세요","겁재":"이기려는 대화 대신 ‘우리’ 편이 되세요","식신":"편해도 설렘 이벤트를 가끔 만드세요","상관":"화날 땐 말하기 전에 한 번 쉬고, 지적보다 부탁형으로 말하세요","편재":"같이 여행·새 경험을 자주 하세요","정재":"돈·계획 얘기는 미리 투명하게 하세요","편관":"긴장을 풀 수 있는 편한 시간을 일부러 만드세요","정관":"형식보다 속마음 표현을 늘리세요","편인":"혼자만의 시간이 필요하다고 미리 말해두세요","정인":"기대기만 하지 말고 먼저 챙겨주세요"};
+function renderLove(L){
+  return '<div class="w-rows">'+
+    wrow("💗","나의 연애 스타일",'<p>'+L.style+'</p>')+
+    wrow("💍","타고난 인연 운",'<p>'+L.starTxt+'</p>')+
+    wrow("🏠","배우자 자리(부부궁)",'<p>배우자 자리에 <b>'+L.iljiSip+'</b>이 앉아 있어서, 결혼하면 <b>'+(ILJI_EASY_G[L.iljiSip]||'')+' 관계</b>가 되기 쉬워요.</p>')+
+    wrow("🤝","잘 맞는 상대",ul(['사주로 가장 끌리는 상대: 태어난 날 글자(일간)가 <b>'+esc(L.partner)+'('+L.pe+')</b>인 사람 — 천간합이라 자연스럽게 끌려요.','나를 채워주는 상대: <b>'+ELEMENTS[L.yong].ko+' 기운이 강한 사람</b> — 같이 있으면 편하고 힘이 나요.','띠로 보면 <b>'+L.good.join('·')+'띠</b>와 편하고, <b>'+L.chung+'띠</b>와는 부딪히기 쉬워요(참고용).']))+
+    wrow("⚠","연애에서 조심할 패턴",ul(L.warn))+
+    wrow("📅","인연이 들어오는 해 (향후 10년)",ul(L.hits))+
+    wrow("✅","관계가 좋아지는 방법",ul(L.tips))+
+  '</div>';
+}
+
+/* ── 건강운 ── */
+var ORGAN_EASY={"목":"간·쓸개, 눈, 근육·힘줄","화":"심장·혈액순환, 혈압, 수면","토":"위장·소화, 피부 트러블","금":"폐·호흡기, 대장, 피부 건조","수":"신장·방광, 허리·뼈, 호르몬"};
+var SEASON={"목":"봄","화":"여름","토":"환절기","금":"가을","수":"겨울"};
+var HEALTH_CARE={"목":{ex:"스트레칭·요가·숲 산책",food:"푸른 채소, 신맛 과일",life:"눈 휴식(20분마다 먼 곳 보기), 화 참지 않고 풀기"},"화":{ex:"가벼운 유산소·걷기",food:"쓴맛 채소, 붉은 과일",life:"잠 7시간, 카페인 오후 끊기"},"토":{ex:"코어 운동·가벼운 등산",food:"따뜻한 곡물, 단호박·고구마",life:"규칙적인 식사 시간, 폭식·야식 줄이기"},"금":{ex:"호흡 운동·수영·빠르게 걷기",food:"무·배·도라지 같은 흰 음식",life:"환기, 가습, 피부 보습"},"수":{ex:"하체 근력·필라테스",food:"검은콩·해조류, 물 충분히",life:"허리 찜질, 몸 따뜻하게, 무리한 밤샘 금지"}};
+function healthReport(a,p,ff){
+  var ec=elCounts(a), ord=["목","화","토","금","수"];
+  var lack=ord.filter(function(k){return ec[k]===0;}), over=ord.filter(function(k){return ec[k]>=3;});
+  var minC=Math.min.apply(null,ord.map(function(k){return ec[k];}));
+  var soft=lack.length?lack:ord.filter(function(k){return ec[k]===minC;});
+  var dayE=ELEM_KO[GAN_ELEM[p.dG]], attacker=ELEM_KO[(GAN_ELEM[p.dG]+3)%5];
+  var rows=ord.map(function(k){var c=ec[k],st=c===0?"비어 있음":c>=3?"넘침":c===1?"약간 약함":"적당";
+    var cls=c===0||c>=3?"lo":(c===1?"":"hi");
+    return '<div class="mo '+cls+'"><div class="mh"><span>'+EL_NAME[k]+'</span><span class="ms">'+c+'개</span></div><div class="mgz">'+ORGAN_EASY[k]+'</div>'+st+'</div>';}).join('');
+  var care=soft.concat(over).filter(function(v,i,s){return s.indexOf(v)===i;});
+  var watchYears=ff.years.filter(function(y){return y.rel==="충"||y.sip==="편관"||y.score<50;}).map(function(y){return '<b>'+y.year+'년</b>('+(y.rel==="충"?"충(글자끼리 부딪힘) — 몸의 변동·사고 조심":y.sip==="편관"?"편관 — 과로·스트레스":"기운이 약한 해")+')';});
+  return {rows:rows,soft:soft,over:over,care:care,attacker:attacker,weak:!a.strength.is_strong,ratio:a.strength.ratio,yong:a.yongsin.final,watch:watchYears};
+}
+function renderHealth(H){
+  var list=[];
+  if(H.weak) list.push("타고난 기운이 여린 편("+Math.round(H.ratio)+"%)이라 <b>체력·면역이 먼저 떨어지는</b> 타입이에요. 아프기 전에 쉬는 게 제일 중요해요.");
+  else list.push("기운이 센 편이라 체력은 좋지만, <b>무리해도 괜찮다고 착각</b>하다 한 번에 몰아서 탈 날 수 있어요.");
+  H.soft.forEach(function(k){list.push("<b>"+ORGAN_EASY[k]+"</b> — "+EL_NAME[k]+" 기운이 "+(k&&H.over.indexOf(k)<0?"적어서":"")+" 상대적으로 약할 수 있어요.");});
+  H.over.forEach(function(k){list.push("<b>"+ORGAN_EASY[k]+"</b> — "+EL_NAME[k]+" 기운이 넘쳐 과부하가 걸리기 쉬워요.");});
+  var careRows=H.care.map(function(k){var c=HEALTH_CARE[k];return '<li><b>'+EL_NAME[k]+'</b> 챙기기 — 운동: '+c.ex+' / 음식: '+c.food+' / 습관: '+c.life+'</li>';}).join('');
+  return '<div class="mo-grid">'+H.rows+'</div>'+
+  '<div class="w-rows">'+
+    wrow("🩺","내 몸에서 신경 쓸 곳",ul(list))+
+    wrow("🍂","조심할 계절 · 좋은 계절",'<p><b>'+SEASON[H.attacker]+'</b>에 컨디션이 떨어지기 쉬워요(나를 누르는 '+EL_NAME[H.attacker]+' 기운이 강해지는 때). 반대로 <b>'+SEASON[H.yong]+'</b>에는 필요한 기운이 들어와 회복이 빨라요.</p>')+
+    wrow("🏃","나에게 맞는 관리법",'<ul>'+careRows+'<li><b>용신('+ELEMENTS[H.yong].ko+')</b> 기본 루틴 — '+HEALTH_CARE[H.yong].ex+'</li></ul>')+
+    wrow("📅","몸을 특히 챙길 해",'<p>'+(H.watch.length?H.watch.join(', '):'향후 6년 중 크게 무리 가는 해는 없어요.')+'</p>')+
+  '</div><div class="warn" style="margin-top:12px"><b>참고</b> · 사주 건강운은 한의학의 오행 이론으로 본 <b>체질 경향</b>이에요. 증상이 있으면 꼭 병원 진료를 받으세요.</div>';
+}
+
+/* ── 집에 채우면 좋은 것 ── */
+var HOME={
+ "목":{c:"초록·연두·청록",m:"원목·라탄·린넨·면",shape:"세로로 긴 형태(키 큰 책장·스탠드)",items:["큰 잎 화분(몬스테라·고무나무)","원목 가구·원목 트레이","책·책장","나뭇잎 패턴 패브릭"],bed:"원목 침대·헤드보드, 연두/세이지 그린 침구 포인트",liv:"동쪽에 큰 화분, 원목 테이블",ent:"작은 화분이나 초록 러그",desk:"책상은 동쪽을 향하게, 작은 식물 하나"},
+ "화":{c:"빨강·주황·분홍·보라",m:"패브릭 조명갓, 캔들, 따뜻한 색 우드",shape:"뾰족한 삼각형·빛나는 것",items:["따뜻한 색 조명·무드등","캔들·디퓨저","붉은 계열 쿠션","밝은 그림·사진"],bed:"은은한 간접조명(너무 밝지 않게), 분홍·코랄 포인트",liv:"남쪽을 밝게, 스탠드 조명 추가",ent:"현관 조명을 밝게, 어둡지 않게",desk:"책상 위 따뜻한 스탠드"},
+ "토":{c:"베이지·황토·브라운·머스터드",m:"도자기·테라코타·돌·세라믹",shape:"낮고 넓은 사각형",items:["도자기 화병·세라믹 소품","낮고 넓은 소파·테이블","테라코타 화분","황토·베이지 러그"],bed:"낮은 침대, 베이지·브라운 톤 침구",liv:"집 중앙을 비우고 깔끔하게, 낮고 넓은 가구",ent:"신발 정리가 핵심, 베이지 매트",desk:"도자기 연필꽂이, 정돈된 책상"},
+ "금":{c:"흰색·아이보리·은색·골드",m:"금속·스테인리스·유리·대리석",shape:"동그란 원형",items:["금속 프레임 거울·시계","원형 테이블·원형 소품","화이트 톤 수납","골드·실버 액세서리"],bed:"흰색·아이보리 침구, 정리된 수납",liv:"서쪽에 금속·화이트 소품, 물건 줄이기",ent:"깨끗하게 비우고 원형 거울",desk:"금속 스탠드, 서랍 정리"},
+ "수":{c:"검정·남색·네이비·딥블루",m:"유리·거울·물결 곡선",shape:"물결 같은 곡선",items:["어항·수경식물","거울","물 그림·바다 사진","네이비 패브릭"],bed:"네이비·차콜 침구, 침실은 어둡고 조용하게",liv:"북쪽에 수경식물이나 물 관련 그림",ent:"깨끗한 거울(정면은 피하기)",desk:"물 한 잔 항상 두기, 푸른 계열 소품"}};
+function homeReport(a){
+  var yong=a.yongsin.final, ye=EL_IDX[yong], helper=ELEM_KO[(ye+4)%5], enemy=ELEM_KO[(ye+3)%5];
+  var ec=elCounts(a), over=Object.keys(ec).filter(function(k){return ec[k]>=3;});
+  var avoid=[enemy].concat(over).filter(function(v,i,s){return s.indexOf(v)===i&&v!==yong&&v!==helper;});
+  return {yong:yong,helper:helper,avoid:avoid,H:HOME[yong],HH:HOME[helper]};
+}
+function renderHome(R){
+  var H=R.H;
+  return '<div class="explain">집에는 나에게 부족한 기운 <strong class="hl">'+ELEMENTS[R.yong].ko+'</strong>을 채우고, 그걸 도와주는 <b>'+ELEMENTS[R.helper].ko+'</b>를 곁들이면 좋아요.<span class="easy">매일 머무는 공간이 부족한 기운을 채워주면, 따로 애쓰지 않아도 컨디션이 받쳐줘요. 다 바꿀 필요 없이 <b>눈에 자주 띄는 곳 한두 군데</b>부터 시작하세요.</span></div>'+
+  '<div class="w-rows">'+
+    wrow("🎨","이 색·소재를 채우세요",ul(['색: <b>'+H.c+'</b> (보조: '+R.HH.c+')','소재: <b>'+H.m+'</b>','모양: <b>'+H.shape+'</b>']))+
+    wrow("🪴","들이면 좋은 물건",ul(H.items.concat(['보조로 '+R.HH.items[0]])))+
+    wrow("🛏","공간별로 이렇게",ul(['<b>침실</b> — '+H.bed,'<b>거실</b> — '+H.liv,'<b>현관</b> — '+H.ent,'<b>책상·작업 공간</b> — '+H.desk]))+
+    (R.avoid.length?wrow("🚫","너무 많으면 좋지 않은 것",ul(R.avoid.map(function(k){return '<b>'+EL_NAME[k]+'</b> 계열('+HOME[k].c+', '+HOME[k].m+')은 <b>포인트 정도로만</b> — 부족한 기운을 눌러요.';}))):'')+
+  '</div>';
+}
+
+/* ── 직업·적성 ── */
+var STEM_WORK={"甲":"목표를 세우고 앞장서서 끌고 가는 스타일. 큰 방향을 정하는 자리에서 빛나요.","乙":"상황에 맞춰 유연하게 풀어가는 스타일. 사람과 사람, 일과 일을 연결하는 데 강해요.","丙":"분위기를 띄우고 사람 앞에 서는 스타일. 알리고 설득하는 일에서 빛나요.","丁":"한 가지를 깊게 파고드는 스타일. 디테일과 완성도가 필요한 일에 강해요.","戊":"묵묵히 중심을 잡는 스타일. 오래 믿고 맡길 수 있는 관리·운영에 강해요.","己":"꼼꼼하게 챙기고 키워내는 스타일. 실무·살림·사람 관리에 강해요.","庚":"결단하고 밀어붙이는 스타일. 문제 해결, 구조조정, 개혁에 강해요.","辛":"기준 높게 다듬는 스타일. 품질·디자인·검수처럼 정교한 일에 강해요.","壬":"큰 흐름을 읽고 판을 짜는 스타일. 전략·유통·네트워크에 강해요.","癸":"조용히 분석하고 통찰하는 스타일. 기획·리서치·상담에 강해요."};
+var GRP_SKILL={"비겁":"자기 주도력·버티는 힘","식상":"표현력·기획력·손재주","재성":"돈 감각·영업력·실행력","관성":"책임감·조직 적응력·관리 능력","인성":"학습력·분석력·문서 능력"};
+var GRP_JOBS={"비겁":["프리랜서·1인 사업","전문 코치·트레이너","스포츠·체육","자영업"],"식상":["마케팅·콘텐츠 기획","디자인·영상·크리에이터","강사·교육","요리·뷰티·공예","작가·카피라이터"],"재성":["영업·세일즈","유통·커머스·MD","재무·회계·투자","사업·창업","부동산 중개·개발"],"관성":["공무원·공기업","대기업 관리직","법·행정·감사","경찰·군인·보안","인사·총무"],"인성":["연구·R&D","교사·교수","상담·심리","출판·편집","자격 기반 전문직(세무·노무 등)"]};
+var ELEM_JOBS={"목":"교육·출판·기획·의류·가구·목재·인테리어·조경","화":"방송·광고·IT·미용·조명·요식·엔터","토":"부동산·건축·중개·농업·컨설팅·보험","금":"금융·기계·자동차·의료기기·법률·귀금속","수":"유통·무역·물류·여행·주류·음료·수산"};
+var ROLE={"비겁":"직접 뛰는 플레이어","식상":"아이디어를 내는 기획자·크리에이터","재성":"숫자를 만드는 실행자·영업","관성":"팀을 굴리는 관리자·리더","인성":"근거를 만드는 분석가·브레인"};
+function careerReport(a,p,gender,nowY){
+  var sc=sipCounts(p), g=sc.g, weak=!a.strength.is_strong, tops=topList(g).slice(0,3);
+  if(tops.length<2){var rest=Object.keys(g).filter(function(k){return k!==tops[0];}).sort(function(x,y){return g[y]-g[x];});tops.push(rest[0]);}
+  var org=g["관성"]*2+g["인성"]*1.5+(weak?1:0), free=g["비겁"]*2+g["식상"]*1.5+(g["관성"]===0?1:0), biz=g["재성"]*2+g["식상"]*1+(weak?-1.5:1.5);
+  org=Math.max(org,0.5);free=Math.max(free,0.5);biz=Math.max(biz,0.5);var tot=org+free+biz;
+  var types=[{k:"조직형",d:"회사·기관 안에서 인정받으며 크는 타입",v:org},{k:"전문·프리랜서형",d:"내 기술·이름으로 독립하는 타입",v:free},{k:"사업형",d:"사람과 돈을 굴려 판을 키우는 타입",v:biz}].map(function(t){t.p=Math.round(t.v/tot*100);return t;}).sort(function(x,y){return y.p-x.p;});
+  var bizNote=(types[0].k==="사업형"&&weak)?"사업 기질이 있지만 기운이 여린 편이라, <b>혼자 창업보다 동업·파트너·팀을 끼고</b> 하는 게 훨씬 유리해요.":(types[0].k==="사업형"?"사업을 감당할 힘이 있어서 <b>직접 판을 벌여도</b> 버티는 구조예요.":"");
+  var jobs=[];tops.forEach(function(k){jobs=jobs.concat(GRP_JOBS[k].slice(0,tops.length>2?3:4));});
+  var dayEl=ELEM_KO[GAN_ELEM[p.dG]], yong=a.yongsin.final;
+  var avoid=[];
+  if(g["관성"]===0) avoid.push("규칙이 빡빡하고 윗선 결재가 많은 곳 — 답답해서 에너지가 빨리 닳아요.");
+  if(g["관성"]>=3) avoid.push("책임만 크고 권한은 없는 자리 — 스트레스가 몸으로 와요.");
+  if(g["식상"]===0) avoid.push("매일 발표·말로 설득해야 하는 자리만 계속되는 곳.");
+  if(g["재성"]===0) avoid.push("실적·인센티브만으로 평가받는 영업직 — 꾸준한 급여 구조가 맞아요.");
+  if(g["인성"]===0) avoid.push("긴 공부·시험을 거쳐야만 하는 길 — 실전에서 배우는 쪽이 빨라요.");
+  if(g["비겁"]===0) avoid.push("혼자 모든 걸 책임지는 1인 구조 — 믿을 동료가 있는 팀이 좋아요.");
+  if(weak) avoid.push("야근·주말 근무가 당연한 곳 — 체력이 곧 성과의 상한선이에요.");
+  var T={change:[],promo:[],study:[],grow:[]};
+  for(var y=nowY;y<nowY+8;y++){var idx=fmod(y-1984,60),gi=fmod(idx,10),ji=fmod(idx,12),sip=sipsin(p.dG,gi),r=branchRel(p.dJ,ji);
+    if(sip==="상관"||r==="충") T.change.push(y); if(sip==="정관"||(sip==="편관"&&!weak)) T.promo.push(y);
+    if(SIP_GRP[sip]==="인성") T.study.push(y); if(sip==="식신"||sip==="편재"||sip==="정재") T.grow.push(y);}
+  var tips=[];
+  tips.push("<b>"+tops.map(function(k){return GRP_SKILL[k];}).join(" / ")+"</b>, 이게 당신의 무기예요. 이력서·포트폴리오에서 이걸 제일 앞에 내세우세요.");
+  tips.push("업종은 <b>"+ELEM_JOBS[yong].split("·").slice(0,3).join("·")+"</b>처럼 용신("+ELEMENTS[yong].ko+") 분야와 엮으면 운이 받쳐줘요.");
+  tips.push(weak?"성과 = 능력 × 체력이에요. <b>일을 줄이는 것도 커리어 전략</b>이에요.":"힘이 넘쳐 여러 일을 벌이기 쉬워요. <b>1년에 핵심 목표 1개</b>로 좁히세요.");
+  return {style:STEM_WORK[GAN[p.dG]],tops:tops,types:types,bizNote:bizNote,jobs:jobs,dayEl:dayEl,yong:yong,avoid:avoid,T:T,tips:tips,role:ROLE[tops[0]],role2:ROLE[tops[1]]};
+}
+function renderCareer(C){
+  function yrs(a,empty){return a.length?a.slice(0,3).join('년, ')+'년':empty;}
+  var bars=C.types.map(function(t,i){return '<div class="meter wide'+(i?'':' m')+'"><span>'+t.k+'</span><div class="mt"><div class="mf" style="width:'+t.p+'%"></div></div><b>'+t.p+'%</b></div><p style="margin:0 0 8px;font-size:13px;color:var(--ink-soft)">'+t.d+'</p>';}).join('');
+  return '<div class="w-rows">'+
+    wrow("🧭","나의 일하는 스타일",'<p>'+C.style+'</p>')+
+    wrow("💪","타고난 무기(능력)",ul(C.tops.map(function(k){return '<b>'+GRP_SKILL[k]+'</b> — 사주에서 '+GRP_EASY[k]+' 기운이 강해요.';})))+
+    wrow("🏢","나는 어떤 타입? (조직 · 전문가 · 사업)",bars+(C.bizNote?'<p>'+C.bizNote+'</p>':'<p>가장 높은 <b>'+C.types[0].k+'</b>으로 시작하고, 두 번째인 <b>'+C.types[1].k+'</b> 요소를 섞으면 좋아요.</p>'))+
+    wrow("👥","팀에서 맡으면 좋은 역할",'<p>1순위 <b>'+C.role+'</b>, 2순위 <b>'+C.role2+'</b>. 이 역할을 맡을 때 인정도 빨리 받고 덜 지쳐요.</p>')+
+    wrow("💼","잘 맞는 직업",ul(['능력 기준: <b>'+C.jobs.join(', ')+'</b>',].concat(C.dayEl===C.yong?['타고난 기질이자 운을 받쳐주는 기운(일간·용신 모두 '+ELEMENTS[C.yong].ko+') 업종: <b>'+ELEM_JOBS[C.yong]+'</b> — 둘이 겹쳐서 이 분야와 특히 인연이 깊어요.']:['타고난 기질(일간 '+ELEMENTS[C.dayEl].ko+') 업종: '+ELEM_JOBS[C.dayEl],'운을 받쳐주는(용신 '+ELEMENTS[C.yong].ko+') 업종: <b>'+ELEM_JOBS[C.yong]+'</b>'])))+
+    (C.avoid.length?wrow("🚫","피하면 좋은 일터",ul(C.avoid)):'')+
+    wrow("📅","커리어 타이밍 (향후 8년)",ul(['🔄 이직·변화·새 도전: '+yrs(C.T.change,'뚜렷한 변동 해 없음 — 한 자리에서 쌓는 흐름'),'🏅 승진·인정·자리: '+yrs(C.T.promo,'뚜렷한 해 없음 — 실력으로 쌓는 흐름'),'📚 공부·자격증·재정비: '+yrs(C.T.study,'—'),'📈 성과·수익·확장: '+yrs(C.T.grow,'—')]))+
+    wrow("✅","커리어 처방",ul(C.tips))+
+  '</div>';
+}
+
 /* ══════════════ 인생 항목별 풀이 ══════════════ */
 function lifeDomains(a, p, gender){
   var sc=sipCounts(p), g=sc.g, male=(gender==="male");
@@ -450,7 +864,7 @@ function lifeDomains(a, p, gender){
   var spouseStar = male?"재성(아내를 뜻하는 글자)":"관성(남편을 뜻하는 글자)";
   var ilji = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"][p.dJ];
   var iljiSip = sipsin(p.dG, JI_BONGI[p.dJ]);
-  var top=topGroup(g);
+  var tops=topList(g), top=tops[0];
   // 연애·결혼
   var love;
   if(spouseCnt===0) love="사주에 "+spouseStar+"가 뚜렷하게 드러나 있지 않습니다. 타고난 인연 표시가 약하다기보다, 결혼·연애의 <b>시기가 대운·세운의 흐름에 더 좌우</b>되는 유형입니다. 조급함보다 좋은 흐름이 올 때를 잡는 것이 중요합니다.";
@@ -467,7 +881,7 @@ function lifeDomains(a, p, gender){
     "비겁":"자영업·전문직·프리랜서처럼 <b>내 이름을 걸고 독립적으로 하는 일</b>"
   };
   var elemJob={"목":"교육·기획·출판·의류·목재","화":"방송·IT·미용·요식·조명","토":"부동산·건축·중개·농업","금":"금융·기계·의료·법·귀금속","수":"유통·무역·서비스·물류·요식"};
-  var job="가장 강한 기운은 <strong class=\"hl\">"+top+"</strong>입니다. 그래서 "+jobMap[top]+"이 잘 맞습니다. 오행으로는 일간의 "+ELEM_KO[dayE]+" 기운과 어울리는 <b>"+elemJob[ELEM_KO[dayE]]+"</b> 분야도 연이 닿습니다.";
+  var job=(tops.length>1?"<strong class=\"hl\">"+tops.join("·")+"</strong> 기운이 비슷하게 강합니다. 그래서 "+tops.slice(0,2).map(function(k){return jobMap[k];}).join(", 또는 "):"가장 강한 기운은 <strong class=\"hl\">"+top+"</strong>입니다. 그래서 "+jobMap[top])+"이 잘 맞습니다. 오행으로는 일간의 "+ELEM_KO[dayE]+" 기운과 어울리는 <b>"+elemJob[ELEM_KO[dayE]]+"</b> 분야도 연이 닿습니다.";
   var jobWhy="사주에서 가장 많은 <b>십신 기운("+top+")</b>이 곧 그 사람이 힘을 잘 쓰는 방식이고, 일간의 오행이 잘 맞는 업종의 성질을 알려주기 때문입니다.";
   // 재물
   var jaeCnt=g["재성"], wealth;
@@ -492,12 +906,18 @@ function lifeDomains(a, p, gender){
   else if(g["비겁"]>=3) people="<b>비겁</b>이 강해 <b>동료·경쟁·형제</b>의 기운이 셉니다. 협력하면 큰 힘이 되지만, 돈 문제·동업에서는 선을 분명히 하는 것이 좋습니다.";
   else people="사람과의 관계에서 <b>주고받는 균형</b>을 잘 잡는 유형입니다. 넓게 사귀기보다 신뢰하는 몇 사람과 깊게 가는 편이 이롭습니다.";
   var peopleWhy="<b>인성</b>은 나를 돕는 귀인·윗사람, <b>비겁</b>은 나와 같은 동료·형제를 뜻합니다. 그 분포로 사람 관계의 결을 본 것입니다.";
+  var ILJI_EASY={"비견":"친구 같은 대등한 관계","겁재":"서로 지기 싫어하는 팽팽한 관계","식신":"편안하고 잘 챙겨주는 관계","상관":"대화는 잘 통하지만 말로 부딪히기 쉬운 관계","편재":"활동적이고 자유로운 관계","정재":"성실하고 현실적인 관계","편관":"긴장감 있고 강한 끌림의 관계","정관":"예의 바르고 안정적인 관계","편인":"속을 다 안 보여주는 독특한 관계","정인":"서로 보살펴주는 관계"};
+  var loveEasy=(spouseCnt===0?"타고난 인연 표시는 약한 편이라, <b>언제 만나느냐(운의 타이밍)</b>가 더 중요해요.":spouseCnt>=3?"인연은 많은 편이에요. <b>많이 만나는 것보다 한 사람을 잘 고르는 게</b> 핵심이에요.":"인연 운은 <b>평균 이상으로 갖춰져</b> 있어요.")+" 배우자와는 <b>"+(ILJI_EASY[iljiSip]||"서로 맞춰가는 관계")+"</b>가 되기 쉬워요.";
+  var jobEasy="<b>"+tops.slice(0,2).map(function(k){return GRP_EASY[k];}).join("·")+"</b>을(를) 쓰는 일에서 힘이 나요. 분야로는 "+elemJob[ELEM_KO[dayE]]+" 쪽이 잘 맞아요.";
+  var wealthEasy=jaeCnt===0?"큰돈을 한 번에 버는 타입보다 <b>꾸준히 쌓는 타입</b>이에요.":a.strength.is_strong?"돈을 <b>적극적으로 굴려도 버틸 힘</b>이 있어요.":"돈이 들어올 기회는 있는데, <b>감당할 체력·여유가 먼저</b>예요. 무리한 확장보다 지키면서 불리는 게 맞아요.";
+  var healthEasy=(overH.length||lackH.length)?"<b>"+overH.concat(lackH).map(function(k){return organ[k].split(",")[0];}).join(", ")+"</b> 쪽을 평소에 조금 더 신경 써주세요.":"타고난 약점이 크게 없어요. <b>잠·식사·운동 같은 기본 관리</b>면 충분해요.";
+  var peopleEasy=(g["인성"]>0?"<b>도와주는 윗사람·선배</b> 복이 있어요. ":"")+(g["비겁"]===0?"대신 <b>같은 편(동료)</b> 기운이 비어 있어서, 믿을 파트너를 일부러 만드는 게 중요해요.":g["비겁"]>=3?"동료가 많은 대신, <b>돈 얽힌 동업은 선을 확실히</b> 그으세요.":"사람 관계는 <b>균형이 잘 잡힌</b> 편이에요.");
   return [
-    {kanji:"緣", title:"연애 · 결혼", body:love, why:loveWhy},
-    {kanji:"職", title:"직업 · 적성", body:job, why:jobWhy},
-    {kanji:"財", title:"재물", body:wealth, why:wealthWhy},
-    {kanji:"健", title:"건강", body:health, why:healthWhy},
-    {kanji:"人", title:"대인 · 귀인", body:people, why:peopleWhy}
+    {kanji:"緣", title:"연애 · 결혼", body:love, why:loveWhy, easy:loveEasy},
+    {kanji:"職", title:"직업 · 적성", body:job, why:jobWhy, easy:jobEasy},
+    {kanji:"財", title:"재물", body:wealth, why:wealthWhy, easy:wealthEasy},
+    {kanji:"健", title:"건강", body:health, why:healthWhy, easy:healthEasy},
+    {kanji:"人", title:"대인 · 귀인", body:people, why:peopleWhy, easy:peopleEasy}
   ];
 }
 /* ══════════════ 대운 · 세운 ══════════════ */
@@ -641,11 +1061,16 @@ function renderElements(five){
       '<div class="track"><div class="fill" style="width:'+w+'%;background:var('+ELEMENTS[k].varc+')"></div></div>'+
       '<div class="ocount">'+c+tag+'</div></div>';});
   html+='</div>';
-  var strongK=ELEM_ORDER.reduce(function(a,b){return counts[b]>counts[a]?b:a;});
-  var why='당신의 사주는 <strong class="hl">'+ELEMENTS[strongK].ko+'</strong>('+ELEMENTS[strongK].key+') 기운이 가장 강합니다.';
+  var mxc=Math.max.apply(null,ELEM_ORDER.map(function(k){return counts[k];}));
+  var strongs=ELEM_ORDER.filter(function(k){return counts[k]===mxc;});
+  var why=strongs.length===1?'당신의 사주는 <strong class="hl">'+ELEMENTS[strongs[0]].ko+'</strong>('+ELEMENTS[strongs[0]].key+') 기운이 가장 강합니다.'
+    :'<strong class="hl">'+strongs.map(function(k){return ELEMENTS[k].ko;}).join('·')+'</strong> 기운이 똑같이 '+mxc+'개로 가장 많습니다. 어느 하나가 튀지 않는 구조입니다.';
+  var EL_EASY={"목":"나무(성장·계획)","화":"불(열정·표현)","토":"흙(안정·현실)","금":"쇠(결단·원칙)","수":"물(지혜·유연)"};
+  var easyE=(!over.length&&!lack.length)?'다섯 기운이 <b>골고루</b> 있어서 크게 치우친 데가 없어요. 극단적인 약점이 적은 대신, 한 가지가 확 튀는 타입도 아니에요.':
+    (over.length?'<b>'+over.map(function(k){return EL_EASY[k];}).join(', ')+'</b> 기운이 넘쳐요. 장점이지만 지나치면 부담이에요. ':'')+(lack.length?'<b>'+lack.map(function(k){return EL_EASY[k];}).join(', ')+'</b> 기운이 비어 있어서 일부러 채우면 좋아요.':'');
   if(over.length) why+=' 특히 '+over.map(function(k){return ELEMENTS[k].ko;}).join('·')+'이(가) 과다해, 그 장점이 지나치면 오히려 부담이 될 수 있습니다.';
   if(lack.length) why+=' 반대로 '+lack.map(function(k){return '<strong class="hl">'+ELEMENTS[k].ko+'</strong>('+ELEMENTS[k].key+')';}).join('·')+' 기운이 <b>비어 있어</b>, 이 부분을 의식적으로 채우는 것이 좋습니다.';
-  return html+'<div class="explain">'+why+'<span class="why"><b>왜 이렇게 나오나요?</b> 사주 여덟 글자(천간4·지지4)를 오행으로 환산해 개수를 센 결과입니다. 치우친 오행이 성격의 강점이자 약점이 되고, 부족한 오행이 곧 <b>용신(보완점)</b>을 정하는 근거가 됩니다.</span></div>';
+  return html+'<div class="explain">'+why+'<span class="easy">'+easyE+'</span><span class="why"><b>왜 이렇게 나오나요?</b> 사주 여덟 글자(천간4·지지4)를 오행으로 환산해 개수를 센 결과입니다. 치우친 오행이 성격의 강점이자 약점이 되고, 부족한 오행이 곧 <b>용신(보완점)</b>을 정하는 근거가 됩니다.</span></div>';
 }
 function renderStrength(st){
   var ratio=Math.max(4,Math.min(96,st.ratio||50));
@@ -653,21 +1078,22 @@ function renderStrength(st){
   return '<div class="gauge"><div class="gauge-head"><span class="cat">'+esc(st.category)+'</span><span class="pct">일간 힘 '+(st.ratio!=null?st.ratio.toFixed(1)+'%':'')+'</span></div>'+
     '<div class="gtrack"><div class="mid"></div><div class="pin" style="left:'+ratio+'%"></div></div>'+
     '<div class="glabels"><span>← 신약 (여림)</span><span>균형</span><span>신강 (강함) →</span></div></div>'+
-    '<div class="explain">'+desc+'<span class="why"><b>왜 이렇게 나오나요?</b> 태어난 달(월지)에 특히 무게를 두고, 나와 같은 기운(비겁)과 나를 돕는 기운(인성)의 세력을 합산해 일간의 세기를 백분율로 추정한 값입니다.</span></div>';
+    '<div class="explain">'+desc+'<span class="easy">'+(st.is_strong?'배터리 용량이 큰 편이에요. 밀어붙이는 힘은 좋은데, 브레이크(남 얘기 듣기)를 같이 챙기면 더 멀리 가요.':'배터리 용량이 작은 편이에요('+Math.round(st.ratio)+'%). 능력이 부족한 게 아니라, <b>충전(휴식·도와줄 사람) 없이 달리면 금방 방전</b>된다는 뜻이에요.')+'</span><span class="why"><b>왜 이렇게 나오나요?</b> 태어난 달(월지)에 특히 무게를 두고, 나와 같은 기운(비겁)과 나를 돕는 기운(인성)의 세력을 합산해 일간의 세기를 백분율로 추정한 값입니다.</span></div>';
 }
 function renderYongsin(y){
   var f=y.final,g=YONGSIN_GUIDE[f]||YONGSIN_GUIDE["수"];
   var html='<div class="explain" style="border-left-color:var('+ELEMENTS[f].varc+')">이 사주에 가장 필요한 기운, <strong class="hl">용신(用神)은 '+ELEMENTS[f].ko+'</strong>입니다. '+esc(y.reason)+'. 아래는 '+ELEMENTS[f].ko+' 기운을 일상에서 채우는 방법입니다 — 무리해서 다 할 필요 없이 마음 가는 것부터 곁에 두세요.'+
-    '<span class="why"><b>근거</b> 억부법(넘치면 덜고 모자라면 채움)으로 <b>'+ELEMENTS[f].ko+'</b>을 골랐습니다.</span></div>';
+    '<span class="easy">나에게 부족해서 <b>채워주면 컨디션이 좋아지는 기운</b>이 '+ELEMENTS[f].ko+'이에요. 아래 목록은 그걸 생활 속에서 채우는 방법이에요. 전부 할 필요 없이 한두 개만 해도 돼요.</span><span class="why"><b>근거</b> 억부법(넘치면 덜고 모자라면 채움)으로 <b>'+ELEMENTS[f].ko+'</b>을 골랐습니다.</span></div>';
   var chips=[{k:"🎨 색",v:g.color},{k:"🧭 방향",v:g.dir},{k:"🪴 소품",v:g.item},{k:"🏃 활동",v:g.act},{k:"🍽 음식",v:g.food},{k:"⚖ 기준",v:ELEMENTS[f].key}];
   html+='<div class="kaeun">';chips.forEach(function(c){html+='<div class="kchip"><div class="klab">'+c.k+'</div><div class="kval">'+esc(c.v)+'</div></div>';});
   return html+'</div>';
 }
+var GYEOK_EASY={"건록격":"내 힘으로 자수성가하는 틀이에요.","양인격":"경쟁 속에서 크게 이기는 틀이에요.","식신격":"재능·손재주로 먹고사는 틀이에요.","상관격":"말·아이디어·창작으로 튀는 틀이에요.","편재격":"사업·거래·기회를 잡아 크게 움직이는 틀이에요. 가만히 있기보다 판을 벌일 때 살아나요.","정재격":"성실하게 모아 안정적으로 불리는 틀이에요.","편관격":"압박을 이겨내며 올라가는 틀이에요.","정관격":"조직에서 인정받고 자리를 얻는 틀이에요.","편인격":"독특한 전문 지식으로 승부하는 틀이에요.","정인격":"배움·자격·도와주는 사람으로 풀리는 틀이에요."};
 function renderPersona(dayGan,gyeok,zodiac,napeum){
   var gs=STEMS_KO[dayGan]||{ko:"?",elem:"토",pol:"양"};
   var html='<div class="explain">당신의 일간은 <strong class="hl">'+esc(dayGan)+' ('+esc(gs.ko)+'·'+esc(gs.elem)+gs.pol+')</strong>입니다. '+esc(STEM_PERSONA[dayGan]||"")+
-    '<span class="why"><b>왜 성격을 이렇게 보나요?</b> 태어난 날의 천간(일간)이 곧 “나”를 상징하기 때문입니다. 열 개의 천간마다 타고난 기질이 다릅니다.</span></div>';
-  if(gyeok&&gyeok.name) html+='<div class="explain" style="border-left-color:var(--gold)">격국(삶의 큰 틀)은 <strong class="hl">'+esc(gyeok.name)+'</strong>. '+esc(gyeok.desc||'')+
+    '<span class="easy">'+esc(STEM_ONE[dayGan]||'')+'</span><span class="why"><b>왜 성격을 이렇게 보나요?</b> 태어난 날의 천간(일간)이 곧 “나”를 상징하기 때문입니다. 열 개의 천간마다 타고난 기질이 다릅니다.</span></div>';
+  if(gyeok&&gyeok.name) html+='<div class="explain" style="border-left-color:var(--gold)">격국(삶의 큰 틀)은 <strong class="hl">'+esc(gyeok.name)+'</strong>. '+esc(gyeok.desc||'')+(GYEOK_EASY[gyeok.name]?'<span class="easy">'+GYEOK_EASY[gyeok.name]+'</span>':'')+
     '<span class="why"><b>띠</b> '+esc(zodiac||'')+' &nbsp;·&nbsp; <b>일주 납음</b> '+esc(napeum||'')+' &nbsp;·&nbsp; 격국은 월지(태어난 달)의 십신을 기준으로 본 것입니다.</span></div>';
   return html;
 }
@@ -700,7 +1126,7 @@ function renderDomains(domains){
   var html='<div class="domains">';
   domains.forEach(function(x){
     html+='<div class="domain"><div class="dh"><span class="dk hanja">'+x.kanji+'</span><span class="dt">'+x.title+'</span></div>'+
-      '<div class="db">'+x.body+'</div><span class="why"><b>왜?</b> '+x.why+'</span></div>';
+      '<div class="db">'+x.body+'</div>'+(x.easy?'<span class="easy">'+x.easy+'</span>':'')+'<span class="why"><b>왜?</b> '+x.why+'</span></div>';
   });
   return html+'</div>';
 }
@@ -715,7 +1141,7 @@ function renderDaeun(dae, age){
   });
   html+='</div></div><p class="luck-hint">← 좌우로 밀어 평생의 대운 흐름을 보세요</p>';
   var cur=dae.list.filter(function(c){return age>=c.age&&age<c.age+10;})[0];
-  if(cur) html+='<div class="explain" style="border-left-color:var(--self)">지금 대운은 <strong class="hl">'+esc(cur.gz)+' ('+esc(cur.sip)+')</strong>. '+(SIP_LONG[cur.sip]||'')+'</div>';
+  if(cur) html+='<div class="explain" style="border-left-color:var(--self)">지금 대운은 <strong class="hl">'+esc(cur.gz)+' ('+esc(cur.sip)+')</strong>. '+(SIP_LONG[cur.sip]||'')+'<span class="easy">지금 10년은 '+(SIP_EASY[cur.sip]||'흐름을 살피는 시기').replace('해','시기')+'예요.</span></div>';
   else if(age<dae.su) html+='<div class="explain" style="border-left-color:var(--self)">아직 첫 대운('+dae.su+'세) 전입니다. 이 시기는 타고난 원국(월주)의 기운이 그대로 이어집니다.</div>';
   return html;
 }
@@ -727,7 +1153,7 @@ function renderSaeun(sa){
   });
   html+='</div></div><p class="luck-hint">← 좌우로 밀어 앞으로 몇 해의 흐름을 보세요</p>';
   var now=sa[0];
-  html+='<div class="explain">올해 '+now.year+'년은 <strong class="hl">'+esc(now.gz)+' ('+esc(now.sip)+')</strong>의 해입니다. '+(SIP_LONG[now.sip]||'')+
+  html+='<div class="explain">올해 '+now.year+'년은 <strong class="hl">'+esc(now.gz)+' ('+esc(now.sip)+')</strong>의 해입니다. '+(SIP_LONG[now.sip]||'')+'<span class="easy">한마디로 올해는 '+(SIP_EASY[now.sip]||'흐름을 살피는 해')+'예요.</span>'+
     '<span class="why"><b>세운</b>은 그해의 간지(년주)를 내 일간과 견준 것으로, 입춘을 기준으로 바뀝니다.</span></div>';
   return html;
 }
@@ -755,14 +1181,22 @@ function renderCompat(A,B,res){
 function renderAll(a, ex){
   var dayGan=splitPillar(a.pillars.day).gan;
   var out="";
+  if(ex.summary) out+=panel("要約","한눈에 보기 — 그래서 나는 어떤 사람?", renderSummary(ex.summary,a));
   out+=panel("四柱","사주팔자 — 당신의 여덟 글자", renderPillars(a.pillars,a.ten_gods,a.twelve_unseong));
   out+=panel("五行","오행 분포 — 무엇이 넘치고 무엇이 비었나", renderElements(a.five_elements));
   out+=panel("身强","일간의 힘 — 신강과 신약", renderStrength(a.strength));
   out+=panel("用神","용신 — 당신에게 필요한 기운과 개운법", renderYongsin(a.yongsin));
   out+=panel("日元","일간 성격 · 삶의 틀", renderPersona(dayGan,a.gyeokguk,a.zodiac_animal,a.napeum_element));
+  if(ex.pers) out+=panel("性","성격 자세히 — 겉과 속, 장점, 고치면 좋은 습관", renderPersonality(ex.pers,a));
   out+=panel("六親","인생 항목별 풀이 — 연애·직업·재물·건강·인연", renderDomains(ex.domains));
+  if(ex.career) out+=panel("職","직업·적성 자세히 — 무기·타입·맞는 일·타이밍", renderCareer(ex.career));
+  if(ex.future) out+=panel("財","재물운 자세히 — 그릇·통로·구멍·좋은 해", renderWealth(a,ex.p,ex.future,ex.daeun,ex.age));
+  if(ex.love) out+=panel("愛","애정운 자세히 — 연애 스타일·잘 맞는 상대·인연 오는 해", renderLove(ex.love));
+  if(ex.health) out+=panel("健","건강운 자세히 — 약한 곳·계절·관리법", renderHealth(ex.health));
+  if(ex.home) out+=panel("家","우리 집에 채우면 좋은 것 — 색·소재·공간별", renderHome(ex.home));
   out+=panel("大運","대운 — 10년 단위 인생의 큰 흐름", renderDaeun(ex.daeun, ex.age));
   out+=panel("歲運","세운 — 해마다의 흐름", renderSaeun(ex.saeun));
+  if(ex.future) out+=panel("來","앞으로의 사주 — 향후 6년 · 12개월 예상", renderFuture(ex.future,ex.daeun,ex.age,ex.bY));
   out+=panel("今日","오늘의 운세", renderDaily(ex.daily,ex.dateStr,a.yongsin.final));
   out+='<div class="real-note"><h3>이 결과가 “진짜”인 이유</h3>이 앱은 당신의 생년월일시로 <b>실제 절기(태양 황경)</b>를 계산해 년·월주를 세우고, <b>갑자 순환</b>으로 일주를, <b>진태양시</b>로 시주를 정했습니다. 카카오 사주봄 공식 엔진과 <b>18개 날짜(입춘 경계 포함) 전부 팔자가 일치</b>함을 확인한 계산식입니다. 성격·용신·운세 해석은 명리학의 표준 규칙을 따른 것으로, 참고용 통찰입니다.<br><span style="color:var(--ink-faint);font-size:13px">※ 신강·용신·격국은 유파에 따라 판단이 다를 수 있고, 시(時)는 태어난 시각이 경계에 가까우면 달라질 수 있습니다.</span></div>';
   var r=document.getElementById("result");r.innerHTML=out;r.hidden=false;
@@ -793,6 +1227,9 @@ document.getElementById("saju-form").addEventListener("submit",function(ev){
       daeun:daeun(bY,bMo,bD,bH,bMi,lon,p,gender),
       saeun:saeun(p, now.getFullYear())
     };
+    ex.p=p; ex.bY=bY; ex.future=futureFlow(a,p,gender,now.getFullYear(),now.getMonth()+1);
+    ex.summary=summarize(a,p,gender,ex);
+    ex.pers=personality(a,p); ex.love=loveReport(a,p,gender,now.getFullYear()); ex.health=healthReport(a,p,ex.future); ex.home=homeReport(a); ex.career=careerReport(a,p,gender,now.getFullYear());
     renderAll(a,ex);
   }catch(e){
     s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">계산 중 문제가 생겼습니다</span>입력한 날짜·시간을 확인하고 다시 시도해주세요. ('+esc(e.message||e)+')';
