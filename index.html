@@ -71,8 +71,13 @@
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
   .field{display:flex; flex-direction:column; gap:7px}
   .field.full{grid-column:1/-1}
+  .hint{font-size:12.5px;color:var(--ink-faint);margin-top:-2px}
+  label.unk{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--ink-soft);cursor:pointer;margin-top:2px}
+  label.unk input{width:18px;height:18px;accent-color:var(--accent)}
+  input.bad{border-color:var(--self)!important;box-shadow:0 0 0 3px rgba(194,90,58,.15)!important}
+  input:disabled{opacity:.45}
   label{font-size:13.5px; font-weight:700; color:var(--ink-soft); letter-spacing:.01em}
-  input[type=date],input[type=time],input[type=number],select{font-family:inherit; font-size:17px; color:var(--ink);
+  input[type=text],input[type=date],input[type=time],input[type=number],select{font-family:inherit; font-size:19px; letter-spacing:.03em; color:var(--ink);
     background:var(--surface-2); border:1.5px solid var(--line-strong); border-radius:11px; padding:13px 14px; width:100%; -webkit-appearance:none; appearance:none;}
   input:focus,select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
   .seg{display:flex; gap:8px}
@@ -300,11 +305,11 @@
     <div class="grid">
       <div class="field">
         <label for="bdate">생년월일 (양력)</label>
-        <input type="date" id="bdate" name="bdate" value="1990-05-15" min="1900-01-01" max="2035-12-31" required />
+        <input type="text" inputmode="numeric" data-kind="date" id="bdate" value="1990.05.15" placeholder="예: 19900515" maxlength="10" autocomplete="off" required><small class="hint">숫자 8자리만 쓰면 점이 자동으로 찍혀요</small>
       </div>
       <div class="field">
         <label for="btime">태어난 시각</label>
-        <input type="time" id="btime" name="btime" value="10:30" required />
+        <input type="text" inputmode="numeric" data-kind="time" id="btime" value="10:30" placeholder="예: 1430" maxlength="5" autocomplete="off" required><small class="hint">24시간 기준 · 오후 2시 반 → 1430</small><label class="unk"><input type="checkbox" id="bunk"> 태어난 시간을 몰라요</label>
       </div>
       <div class="field full">
         <label>성별</label>
@@ -334,14 +339,14 @@
     <div class="two">
       <div class="person">
         <h4><span class="pnum">1</span> 첫 번째 사람</h4>
-        <div class="field"><label for="a-date">생년월일 (양력)</label><input type="date" id="a-date" value="1990-05-15" min="1900-01-01" max="2035-12-31" required></div>
-        <div class="field"><label for="a-time">태어난 시각</label><input type="time" id="a-time" value="10:30" required></div>
+        <div class="field"><label for="a-date">생년월일 (양력)</label><input type="text" inputmode="numeric" data-kind="date" id="a-date" value="1990.05.15" placeholder="예: 19900515" maxlength="10" autocomplete="off" required></div>
+        <div class="field"><label for="a-time">태어난 시각</label><input type="text" inputmode="numeric" data-kind="time" id="a-time" value="10:30" placeholder="예: 1430" maxlength="5" autocomplete="off" required></div>
         <div class="field"><label>성별</label><div class="seg"><label><input type="radio" name="a-gender" value="male" checked>남성</label><label><input type="radio" name="a-gender" value="female">여성</label></div></div>
       </div>
       <div class="person">
         <h4><span class="pnum">2</span> 두 번째 사람</h4>
-        <div class="field"><label for="b-date">생년월일 (양력)</label><input type="date" id="b-date" value="1992-09-20" min="1900-01-01" max="2035-12-31" required></div>
-        <div class="field"><label for="b-time">태어난 시각</label><input type="time" id="b-time" value="14:00" required></div>
+        <div class="field"><label for="b-date">생년월일 (양력)</label><input type="text" inputmode="numeric" data-kind="date" id="b-date" value="1992.09.20" placeholder="예: 19900515" maxlength="10" autocomplete="off" required></div>
+        <div class="field"><label for="b-time">태어난 시각</label><input type="text" inputmode="numeric" data-kind="time" id="b-time" value="14:00" placeholder="예: 1430" maxlength="5" autocomplete="off" required></div>
         <div class="field"><label>성별</label><div class="seg"><label><input type="radio" name="b-gender" value="female" checked>여성</label><label><input type="radio" name="b-gender" value="male">남성</label></div></div>
       </div>
     </div>
@@ -1189,6 +1194,7 @@ function renderCompat(A,B,res){
 function renderAll(a, ex){
   var dayGan=splitPillar(a.pillars.day).gan;
   var out="";
+  if(ex.unk) out+='<div class="warn" style="margin:0 0 14px"><b>태어난 시간을 몰라 정오(12시) 기준으로 계산했어요.</b> 시주(時柱)는 정확하지 않을 수 있어서, 성격·오행 개수 일부가 달라질 수 있어요. 나머지 흐름(연·월·일)은 그대로 믿고 보셔도 돼요.</div>';
   if(ex.summary) out+=panel("要約","한눈에 보기 — 그래서 나는 어떤 사람?", renderSummary(ex.summary,a));
   out+=panel("四柱","사주팔자 — 당신의 여덟 글자", renderPillars(a.pillars,a.ten_gods,a.twelve_unseong));
   out+=panel("五行","오행 분포 — 무엇이 넘치고 무엇이 비었나", renderElements(a.five_elements));
@@ -1211,13 +1217,34 @@ function renderAll(a, ex){
   r.scrollIntoView({behavior:(matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"),block:"start"});
 }
 
+/* ── 쉬운 날짜·시간 입력 ── */
+function parseDateIn(v){var d=String(v||"").replace(/\D/g,"");if(d.length!==8)return null;var y=+d.slice(0,4),m=+d.slice(4,6),dd=+d.slice(6,8);
+  if(y<1900||y>2035||m<1||m>12||dd<1)return null;var last=new Date(y,m,0).getDate();if(dd>last)return null;return {y:y,m:m,d:dd};}
+function parseTimeIn(v){var d=String(v||"").replace(/\D/g,"");if(d.length===3)d="0"+d;if(d.length!==4)return null;var h=+d.slice(0,2),mi=+d.slice(2,4);
+  if(h>23||mi>59)return null;return {h:h,mi:mi};}
+function fmtIn(el){var k=el.getAttribute("data-kind"),d=el.value.replace(/\D/g,"");
+  if(k==="date"){d=d.slice(0,8);el.value=d.length>6?d.slice(0,4)+"."+d.slice(4,6)+"."+d.slice(6):d.length>4?d.slice(0,4)+"."+d.slice(4):d;}
+  else{d=d.slice(0,4);el.value=d.length>2?d.slice(0,2)+":"+d.slice(2):d;}}
+function checkIn(el){var ok=el.getAttribute("data-kind")==="date"?parseDateIn(el.value):parseTimeIn(el.value);el.classList.toggle("bad",!ok&&el.value!=="");return ok;}
+Array.prototype.forEach.call(document.querySelectorAll("input[data-kind]"),function(el){
+  el.addEventListener("focus",function(){setTimeout(function(){el.select();},0);});
+  el.addEventListener("input",function(){fmtIn(el);el.classList.remove("bad");
+    var full=el.getAttribute("data-kind")==="date"?el.value.length===10:el.value.length===5;
+    if(full&&checkIn(el)){var all=Array.prototype.slice.call(el.form.querySelectorAll("input[data-kind]:not(:disabled)"));var nx=all[all.indexOf(el)+1];if(nx)nx.focus();else el.blur();}});
+  el.addEventListener("blur",function(){if(el.getAttribute("data-kind")==="time"&&/^\d{3}$/.test(el.value.replace(/\D/g,""))){el.value="0"+el.value.replace(/\D/g,"");fmtIn(el);}checkIn(el);});
+});
+document.getElementById("bunk").addEventListener("change",function(){var t=document.getElementById("btime");t.disabled=this.checked;if(this.checked){t.classList.remove("bad");}});
+function inErr(s,title,msg){s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">'+title+'</span>'+msg;}
 document.getElementById("saju-form").addEventListener("submit",function(ev){
   ev.preventDefault();
-  var date=document.getElementById("bdate").value, time=document.getElementById("btime").value||"12:00";
+  var unk=document.getElementById("bunk").checked;
+  var dIn=parseDateIn(document.getElementById("bdate").value), tIn=unk?{h:12,mi:0}:parseTimeIn(document.getElementById("btime").value);
+  var date=dIn?(dIn.y+"-"+dIn.m+"-"+dIn.d):"", time=tIn?(tIn.h+":"+tIn.mi):"";
   var gender=(document.querySelector('input[name=gender]:checked')||{}).value||"male";
   var lonRaw=document.getElementById("lon").value, lon=lonRaw?parseFloat(lonRaw):undefined;
   var s=document.getElementById("status");
-  if(!date){s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">날짜를 넣어주세요</span>생년월일을 입력해야 계산할 수 있습니다.';return;}
+  if(!date){checkIn(document.getElementById("bdate"));inErr(s,"생년월일을 확인해주세요","숫자 8자리로 넣어주세요. 예: 1990년 5월 15일 → <b>19900515</b>");return;}
+  if(!time){checkIn(document.getElementById("btime"));inErr(s,"태어난 시간을 확인해주세요","24시간 기준 숫자 4자리로 넣어주세요. 예: 오후 2시 30분 → <b>1430</b>. 모르면 ‘태어난 시간을 몰라요’를 체크하세요.");return;}
   s.hidden=true;
   var dm=date.match(/(\d+)-(\d+)-(\d+)/), tm=time.match(/(\d+):(\d+)/);
   try{
@@ -1235,7 +1262,7 @@ document.getElementById("saju-form").addEventListener("submit",function(ev){
       daeun:daeun(bY,bMo,bD,bH,bMi,lon,p,gender),
       saeun:saeun(p, now.getFullYear())
     };
-    ex.p=p; ex.bY=bY; ex.future=futureFlow(a,p,gender,now.getFullYear(),now.getMonth()+1);
+    ex.p=p; ex.bY=bY; ex.unk=unk; ex.future=futureFlow(a,p,gender,now.getFullYear(),now.getMonth()+1);
     ex.summary=summarize(a,p,gender,ex);
     ex.pers=personality(a,p); ex.love=loveReport(a,p,gender,now.getFullYear()); ex.health=healthReport(a,p,ex.future); ex.home=homeReport(a); ex.career=careerReport(a,p,gender,now.getFullYear());
     renderAll(a,ex);
@@ -1246,8 +1273,9 @@ document.getElementById("saju-form").addEventListener("submit",function(ev){
 
 /* ── 궁합 폼 제출 ── */
 function buildPerson(pre){
-  var d=document.getElementById(pre+'-date').value.match(/(\d+)-(\d+)-(\d+)/);
-  var t=document.getElementById(pre+'-time').value.match(/(\d+):(\d+)/);
+  var dI=parseDateIn(document.getElementById(pre+'-date').value), tI=parseTimeIn(document.getElementById(pre+'-time').value);
+  if(!dI||!tI) throw new Error((pre==='a'?'1번':'2번')+' 사람의 '+(!dI?'생년월일(예: 19900515)':'시간(예: 1430)')+'을 확인해주세요');
+  var d=[0,dI.y,dI.m,dI.d], t=[0,tI.h,tI.mi];
   var g=(document.querySelector('input[name='+pre+'-gender]:checked')||{}).value||'male';
   var p=computePillars(+d[1],+d[2],+d[3],+t[1],+t[2],undefined);
   return {p:p, a:analyze(p,g), gender:g, label:d[1]+'.'+(+d[2])+'.'+(+d[3])};
@@ -1259,7 +1287,7 @@ document.getElementById('gunghap-form').addEventListener('submit',function(ev){
   if(!da||!db){s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">날짜를 넣어주세요</span>두 사람의 생년월일을 모두 입력해야 합니다.';return;}
   s.hidden=true;
   try{ renderCompat(buildPerson('a'), buildPerson('b'), compat(buildPerson('a'),buildPerson('b'))); }
-  catch(e){ s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">계산 중 문제가 생겼습니다</span>입력을 확인하고 다시 시도해주세요. ('+esc(e.message||e)+')'; }
+  catch(e){ var m=String(e.message||e); if(/확인해주세요/.test(m)){inErr(s,"입력을 확인해주세요",esc(m));return;} s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">계산 중 문제가 생겼습니다</span>입력을 확인하고 다시 시도해주세요. ('+esc(m)+')'; }
 });
 /* ── 탭 전환 ── */
 function renderResting(mode){
