@@ -6,7 +6,7 @@
 <meta property="og:image" content="https://hyj870184-crypto.github.io/saju-app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="twitter:card" content="summary_large_image"><style>:root{color-scheme:dark}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#0a0907;color:#f2ead7}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>유정 인생연구소</title>
 <meta name="description" content="로그인·설치 없이 링크만으로 여는 진짜 사주 앱 — 절기와 진태양시로 사주팔자를 직접 계산합니다" />
 <style>
@@ -279,18 +279,124 @@
   .w-row ul{margin:4px 0 0;padding-left:18px;font-size:14.5px;line-height:1.75}
   .meter.wide{grid-template-columns:118px 1fr 40px;font-size:13.5px}
   .bowl{display:flex;gap:6px;margin:6px 0 2px}.bowl span{flex:1;height:9px;border-radius:5px;background:var(--line)}.bowl span.on{background:var(--gold)}
+  /* ═══════════ LUXURY BLACK & GOLD THEME ═══════════ */
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"],:root[data-theme="light"]{
+    color-scheme:dark;
+    --bg:#0a0907; --bg-2:#100e0a; --surface:#14120d; --surface-2:#1b1812;
+    --ink:#f2ead7; --ink-soft:#c4b894; --ink-faint:#8a7f63;
+    --line:rgba(214,178,104,.16); --line-strong:rgba(214,178,104,.34);
+    --accent:#7fc4a6; --accent-deep:#a9dcc5; --accent-soft:rgba(127,196,166,.12);
+    --gold:#d9b46a; --gold-2:#f3dc9f; --gold-deep:#a8823e; --gold-soft:rgba(217,180,106,.11); --self:#e58a64;
+    --shadow:0 1px 0 rgba(243,220,159,.05) inset,0 18px 40px rgba(0,0,0,.45);
+    --o-mok:#6cbf7d; --o-hwa:#e8707f; --o-to:#dcb050; --o-geum:#c7ccd4; --o-su:#6d97d6;
+    --lux-grad:linear-gradient(135deg,#f3dc9f 0%,#d9b46a 38%,#a8823e 70%,#e9cd88 100%);
+  }
+  body{background:var(--bg);background-image:
+      radial-gradient(900px 480px at 50% -120px,rgba(217,180,106,.16),transparent 70%),
+      radial-gradient(600px 400px at 100% 30%,rgba(217,180,106,.05),transparent 70%),
+      repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+    background-attachment:fixed,fixed,scroll; color:var(--ink);}
+  ::selection{background:rgba(217,180,106,.35)}
+  .lux-top{display:flex;justify-content:center;gap:10px;align-items:center;padding:14px 0 0;font-size:11px;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .lux-top i{display:block;width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))} .lux-top i:last-child{transform:scaleX(-1)}
+  header.hero{padding:40px 0 30px}
+  .seal{width:92px;height:92px;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle at 35% 30%,rgba(243,220,159,.18),rgba(0,0,0,0) 60%),var(--surface);
+    color:transparent;background-clip:padding-box;position:relative;font-size:44px;margin-bottom:22px;box-shadow:0 0 0 6px rgba(217,180,106,.06),0 0 0 7px rgba(217,180,106,.25),0 20px 50px rgba(217,180,106,.12)}
+  .seal span{background:var(--lux-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-weight:900;letter-spacing:.06em;background:var(--lux-grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding:.05em 0}
+  .hanja-sub{color:var(--gold);letter-spacing:.6em;text-indent:.6em;font-size:13px;margin-top:12px;font-weight:500}
+  .tagline{color:var(--ink-soft);font-size:15.5px;margin-top:18px}
+  .tagline b,.credibility b{color:var(--gold-2)}
+  .credibility{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 16px;margin-top:22px;letter-spacing:.04em;color:var(--ink-faint)}
+  .dot-sep{width:5px;height:5px;border-radius:0;transform:rotate(45deg);background:var(--gold-deep)}
+  .card,.panel .explain,.domain,.w-row,.sum-card,.ycard,.mo,.kchip,.gauge,.obars,.daily,.luck-cell,.gan,.ji,.real-note,.compat-head,.citem{
+    background:linear-gradient(180deg,rgba(243,220,159,.035),rgba(243,220,159,0) 40%),var(--surface)!important;border-color:var(--line)!important}
+  .card{border-radius:20px;box-shadow:var(--shadow),0 0 0 1px rgba(217,180,106,.08)}
+  form.input-card{position:relative}
+  form.input-card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,180,106,.1);border-radius:15px;pointer-events:none}
+  .form-title{color:var(--gold-2)}
+  input[type=text],input[type=number],select{background:#0f0d0a!important;border-color:var(--line-strong)!important;color:var(--gold-2)!important;font-weight:500}
+  input::placeholder{color:#5f5645}
+  input:focus,select:focus{border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(217,180,106,.16)!important}
+  .seg label{background:#0f0d0a;border-color:var(--line-strong)}
+  .seg label:has(input:checked){border-color:var(--gold);color:var(--gold-2);background:rgba(217,180,106,.08)}
+  .btn{background:var(--lux-grad)!important;color:#1a1408!important;letter-spacing:.12em;border-radius:14px;box-shadow:0 10px 30px rgba(217,180,106,.25),0 1px 0 rgba(255,255,255,.5) inset;text-shadow:0 1px 0 rgba(255,255,255,.3)}
+  .tab{background:#0f0d0a;border-color:var(--line);color:var(--ink-faint);letter-spacing:.08em}
+  .tab[aria-selected="true"]{background:var(--surface);color:var(--gold-2);box-shadow:inset 0 2px 0 var(--gold)}
+  .panel{margin-top:44px}
+  .eyebrow{margin-bottom:18px}
+  .eyebrow .kanji{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:50%;font-size:19px;background:var(--lux-grad);-webkit-background-clip:text;background-clip:text;color:transparent;box-shadow:0 0 0 3px rgba(217,180,106,.08)}
+  .eyebrow .kanji.k2{font-size:13.5px;letter-spacing:-.04em;width:44px;height:44px;flex:none}
+  .eyebrow .kanji{flex:none}
+  .eyebrow .ko{color:var(--ink);letter-spacing:.04em}
+  .eyebrow .rule{background:linear-gradient(90deg,var(--gold-deep),transparent)}
+  .explain{border-left:2px solid var(--gold)!important}
+  .explain .why b,.domain .why b,.citem .why b{color:var(--gold)}
+  .hl{color:var(--gold-2)!important}
+  .easy{background:rgba(217,180,106,.07);border:1px solid rgba(217,180,106,.18)}
+  .easy::before{color:var(--gold)}
+  .domain .dk{background:var(--lux-grad)!important;color:#1a1408!important}
+  .sum-hero{border:1px solid var(--gold)!important;background:radial-gradient(600px 200px at 0 0,rgba(217,180,106,.12),transparent),var(--surface)!important;position:relative;overflow:hidden}
+  .sum-hero .one{background:var(--lux-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sum-card.good h4{color:var(--accent)} .sum-card.do h4{color:var(--gold-2)}
+  .gloss{background:transparent;border-color:var(--line-strong)}
+  .gloss b{color:var(--gold)}
+  .warn{background:rgba(217,180,106,.07)!important;border:1px solid rgba(217,180,106,.2)}
+  .pcol.self .gan{border-color:var(--gold)!important;box-shadow:0 0 0 1px var(--gold),0 0 30px rgba(217,180,106,.2)!important}
+  .self-tag{background:var(--lux-grad)!important;color:#1a1408!important}
+  .big-hj{text-shadow:0 0 18px rgba(217,180,106,.15)}
+  .score-ring{background:conic-gradient(var(--gold) calc(var(--p,60)*1%),#221e15 0)!important}
+  .meter .mf{background:var(--accent)} .meter.m .mf{background:var(--lux-grad)}
+  .meter .mt{background:#262116}
+  .ycard .ytag,.mo.hi .ms{background:var(--accent);color:#07130e}
+  .ycard.best{border-color:var(--accent)!important} .ycard.now{border-color:var(--gold)!important}
+  .ycard.now .ytag{background:var(--lux-grad);color:#1a1408}
+  .ycard .yy{color:var(--gold-2)}
+  .luck-cell.now{border-color:var(--gold)!important;box-shadow:0 0 0 1px var(--gold),0 0 20px rgba(217,180,106,.18)!important}
+  .luck-cell .nowtag{background:var(--lux-grad);color:#1a1408}
+  .bowl span{background:#262116} .bowl span.on{background:var(--lux-grad)}
+  .obar .track{background:#1f1b13}
+  .real-note h3::before{color:var(--gold)}
+  .real-note b{color:var(--gold-2)}
+  footer{color:var(--ink-faint)}
+  .w-row h4,.sum-card h4{letter-spacing:.02em}
+  .report-head{margin-top:36px;text-align:center;padding:26px 18px;border:1px solid var(--line-strong);border-radius:20px;position:relative;
+    background:radial-gradient(500px 160px at 50% 0,rgba(217,180,106,.14),transparent),var(--surface)}
+  .report-head::before{content:"";position:absolute;inset:7px;border:1px solid rgba(217,180,106,.14);border-radius:14px;pointer-events:none}
+  .report-head .rk{font-size:11px;letter-spacing:.45em;color:var(--gold);text-indent:.45em}
+  .report-head .rt{font-family:"Noto Serif KR",serif;font-weight:900;font-size:26px;margin:8px 0 4px;background:var(--lux-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .report-head .rm{font-size:13.5px;color:var(--ink-soft)}
+  .report-head .rm b{color:var(--gold-2)}
+  .report-head .toc{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:14px}
+  .report-head .toc span{font-size:12px;border:1px solid var(--line-strong);border-radius:20px;padding:3px 10px;color:var(--ink-soft)}
+  .ss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .ss{border:1px solid var(--line);border-radius:14px;padding:15px 17px;background:var(--surface);position:relative}
+  .ss .sn{font-family:"Noto Serif KR",serif;font-weight:900;font-size:17px;color:var(--gold-2);display:flex;align-items:center;gap:8px}
+  .ss .sn small{font-size:11.5px;font-weight:500;color:var(--ink-faint);font-family:"Noto Sans KR",sans-serif}
+  .ss .sb{font-size:14.5px;line-height:1.7;margin-top:6px}
+  .ss .su{font-size:13.5px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line-strong)}
+  .ss.off{opacity:.55}
+  .stage{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:start;border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:var(--surface)}
+  .stage + .stage{margin-top:10px}
+  .stage .sa{text-align:center;border-right:1px solid var(--line);padding-right:12px}
+  .stage .sa .t{font-family:"Noto Serif KR",serif;font-weight:900;color:var(--gold-2);font-size:17px}
+  .stage .sa .g{font-size:12px;color:var(--ink-faint)}
+  .stage .sa .gz{font-family:"Noto Serif KR",serif;font-size:22px;margin-top:4px}
+  .stage .sx{font-size:14.5px;line-height:1.72}
+  .stage .sx .meter{margin:0 0 6px}
 </style>
 
 <div class="wrap">
+  <div class="lux-top"><i></i>Premium Saju Report<i></i></div>
   <header class="hero">
-    <div class="seal serif" aria-hidden="true">硏</div>
+    <div class="seal serif" aria-hidden="true"><span>命</span></div>
     <h1>유정 인생연구소</h1>
     <p class="hanja-sub">人 生 硏 究 所</p>
     <p class="tagline">로그인도, 설치도 필요 없습니다. 링크 하나면 누구나 볼 수 있어요.<br><b>절기</b>와 <b>진태양시</b>로 사주팔자를 <b>직접 계산</b>하고, <b>왜 그런 해석이 나오는지</b>까지 풀어드립니다.</p>
     <div class="credibility">
       <span>실제 만세력 계산</span><span class="dot-sep"></span>
       <span>절기·진태양시 보정</span><span class="dot-sep"></span>
-      <span>규칙 기반, 지어내지 않음</span>
+      <span>규칙 기반, 지어내지 않음</span><span class="dot-sep"></span><span>19가지 영역 정밀 풀이</span>
     </div>
   </header>
 
@@ -868,6 +974,58 @@ function renderCareer(C){
   '</div>';
 }
 
+/* ── 신살(타고난 특별한 별) ── */
+function sinsal(a,p){
+  var br=[p.yJ,p.mJ,p.dJ,p.hJ], pos=["년","월","일","시"], dG=p.dG, out=[];
+  function where(targets,skip){var w=[];br.forEach(function(b,i){if(i!==skip&&targets.indexOf(b)>=0)w.push(pos[i]+"지");});return w;}
+  var CHEON={0:[1,7],4:[1,7],6:[1,7],1:[0,8],5:[0,8],2:[11,9],3:[11,9],7:[2,6],8:[5,3],9:[5,3]};
+  var MUN=[5,6,8,9,8,9,11,0,2,3];
+  var HONG=[6,6,2,7,4,4,10,9,0,8];
+  var YANG={0:3,2:6,4:6,6:9,8:0};
+  function grp(b){return [[2,6,10],[8,0,4],[5,9,1],[11,3,7]].filter(function(g){return g.indexOf(b)>=0;})[0];}
+  var DOH={"2":3,"8":9,"5":6,"11":0}, YEOK={"2":8,"8":2,"5":11,"11":5}, HWA={"2":10,"8":4,"5":1,"11":7};
+  function byGroup(map){var hit=[];[[p.yJ,0],[p.dJ,2]].forEach(function(x){var t=map[String(grp(x[0])[0])];hit=hit.concat(where([t],x[1]));});return hit.filter(function(v,i,s){return s.indexOf(v)===i;});}
+  var list=[
+    {n:"천을귀인",h:"天乙貴人",w:where(CHEON[dG],-1),b:"하늘이 붙여준 <b>최고의 귀인 별</b>이에요. 어려울 때 꼭 도와주는 사람이 나타나고, 큰 사고를 비껴가는 복이 있어요.",u:"도움을 청하는 걸 부끄러워하지 마세요. 윗사람·선배와의 인연이 곧 기회예요."},
+    {n:"문창귀인",h:"文昌貴人",w:where([MUN[dG]],-1),b:"<b>글·공부·시험 운</b>의 별이에요. 머리가 좋고 문서·기획·글쓰기에 재능이 있어요.",u:"자격증·글쓰기·기획서처럼 ‘문서로 남는 일’에서 성과가 잘 나요."},
+    {n:"도화살",h:"桃花殺",w:byGroup(DOH),b:"<b>사람을 끄는 매력</b>의 별이에요. 인기가 많고 눈에 띄어요. 옛날엔 ‘살’이라 했지만 요즘은 연예·마케팅·서비스업의 큰 무기예요.",u:"매력을 일(콘텐츠·영업·브랜딩)에 쓰면 복이 되고, 연애에서는 선을 분명히 하세요."},
+    {n:"역마살",h:"驛馬殺",w:byGroup(YEOK),b:"<b>이동·변화·해외</b>의 별이에요. 한곳에 가만히 있으면 답답하고, 움직일수록 운이 풀려요.",u:"출장·여행·외근·해외 관련 일이 잘 맞아요. 이사·이직 기회를 두려워하지 마세요."},
+    {n:"화개살",h:"華蓋殺",w:byGroup(HWA),b:"<b>예술·종교·깊은 공부</b>의 별이에요. 혼자만의 세계가 있고 감수성과 집중력이 깊어요.",u:"취미·예술·명상·전문 공부에 몰입할 시간을 꼭 가지세요. 외로움은 창작으로 바꾸면 좋아요."},
+    {n:"홍염살",h:"紅艶殺",w:where([HONG[dG]],-1),b:"<b>은은한 색기·분위기 미인</b>의 별이에요. 가만히 있어도 이성의 눈길을 끌어요.",u:"외모·스타일·분위기가 경쟁력이 되는 일에서 빛나요."},
+    {n:"양인살",h:"羊刃殺",w:YANG[dG]!=null?where([YANG[dG]],-1):[],b:"<b>칼 같은 추진력</b>의 별이에요. 승부욕과 결단력이 강해 큰일을 해내요.",u:"힘이 센 만큼 다툼·부상을 조심하고, 경쟁 무대(운동·영업·전문직)에서 쓰세요."}
+  ];
+  var dayIdx=0;for(var n=0;n<60;n++){if(n%10===p.dG&&n%12===p.dJ){dayIdx=n;break;}}
+  if([16,46,28,58,34].indexOf(dayIdx)>=0) list.push({n:"괴강살",h:"魁罡殺",w:["일주"],b:"<b>보스 기질</b>의 별이에요. 카리스마와 리더십이 강하고, 평범함을 거부해요.",u:"리더·창업·전문가 자리에서 빛나요. 가까운 사람에겐 부드럽게."});
+  return list;
+}
+function renderSinsal(list){
+  var has=list.filter(function(x){return x.w.length;}), no=list.filter(function(x){return !x.w.length;});
+  var html='<div class="explain">신살은 사주에 숨어 있는 <b>특별한 별(재능·기질 표시)</b>이에요. 무섭게 들리는 이름도 있지만, 요즘 해석으로는 <b>잘 쓰면 무기</b>가 되는 게 대부분이에요.<span class="easy">당신에게는 <b>'+(has.length?has.map(function(x){return x.n;}).join(', '):'두드러진 신살 없이 담백한 구조')+'</b>'+(has.length?(function(w){var c=w.charCodeAt(w.length-1);return ((c-44032)%28!==0)?'이':'가';})(has[has.length-1].n)+' 있어요.':'예요. 특별한 별이 없다는 건 치우침이 적다는 뜻이기도 해요.')+'</span></div><div class="ss-grid" style="margin-top:14px">';
+  has.forEach(function(x){html+='<div class="ss"><div class="sn">✦ '+x.n+' <small>'+x.h+' · '+x.w.join('·')+'</small></div><div class="sb">'+x.b+'</div><div class="su">활용법 · '+x.u+'</div></div>';});
+  html+='</div>';
+  if(no.length) html+='<p class="luck-hint">없는 별: '+no.map(function(x){return x.n;}).join(' · ')+'</p>';
+  return html;
+}
+/* ── 인생 4단계 ── */
+var STAGE_TXT={"비겁":"형제·친구·동료와 어울리며 <b>내 편과 경쟁</b>을 함께 겪는 시기예요.","식상":"재능과 끼를 <b>드러내고 표현</b>하는 시기예요. 하고 싶은 게 많아요.","재성":"돈·일·현실을 <b>일찍 배우고 바쁘게 움직이는</b> 시기예요.","관성":"책임과 규칙 속에서 <b>단련되며 인정받는</b> 시기예요.","인성":"도움과 배움이 있는 시기예요. <b>보살핌을 받고 공부 운</b>이 좋아요."};
+function lifeStages(a,p){
+  var W=a.strength.is_strong?{"식상":12,"재성":12,"관성":6,"인성":-6,"비겁":-6}:{"인성":14,"비겁":10,"식상":-2,"재성":0,"관성":-8};
+  var st=[{t:"초년",g:"0~19세",sub:"어린 시절·학창 시절, 부모의 영향",i:0},{t:"청년",g:"20~39세",sub:"사회 진출·독립·연애",i:1},{t:"중년",g:"40~59세",sub:"나 자신과 배우자, 인생의 중심",i:2},{t:"말년",g:"60세~",sub:"자녀·노후·마무리",i:3}];
+  var cols=[[p.yG,p.yJ],[p.mG,p.mJ],[p.dG,p.dJ],[p.hG,p.hJ]];
+  return st.map(function(s){var c=cols[s.i], gG=s.i===2?null:SIP_GRP[sipsin(p.dG,c[0])], gJ=SIP_GRP[sipsin(p.dG,JI_BONGI[c[1]])];
+    var sc=58+(gG?W[gG]:0)+W[gJ]; sc=Math.max(35,Math.min(92,sc));
+    var TAIL={"비겁":"내 편과 경쟁","식상":"재능 표현","재성":"돈·일에 대한 현실 감각","관성":"책임과 단련","인성":"도움과 배움"};
+    var txt=(gG&&gG!==gJ?STAGE_TXT[gG]+' 여기에 <b>'+TAIL[gJ]+'</b>의 흐름도 함께 있어요.':STAGE_TXT[gJ]);
+    var mood=sc>=72?"흐름이 순한 시기":sc>=58?"무난하게 쌓아가는 시기":"단련을 통해 크는 시기";
+    return {t:s.t,g:s.g,sub:s.sub,gz:GAN[c[0]]+JI[c[1]],sc:sc,txt:txt,mood:mood};});
+}
+function renderStages(arr,unk){
+  var best=arr.slice().sort(function(x,y){return y.sc-x.sc;})[0];
+  var html='<div class="explain">사주의 네 기둥은 인생의 네 계절이에요. 년주는 초년, 월주는 청년, 일주는 중년, 시주는 말년을 보여줘요.<span class="easy">당신 인생에서 흐름이 가장 순한 때는 <b>'+best.t+'('+best.g+')</b>이에요. 점수가 낮은 시기는 나쁜 게 아니라 <b>단련되며 실력이 쌓이는 때</b>예요.</span></div><div style="margin-top:14px">';
+  arr.forEach(function(s){html+='<div class="stage"><div class="sa"><div class="t">'+s.t+'</div><div class="g">'+s.g+'</div><div class="gz hanja">'+esc(s.gz)+'</div></div><div class="sx"><div class="meter"><span>흐름</span><div class="mt"><div class="mf" style="width:'+s.sc+'%"></div></div><b>'+s.sc+'</b></div><b style="color:var(--gold-2)">'+s.mood+'</b> · <span style="color:var(--ink-faint);font-size:13px">'+s.sub+'</span><br>'+s.txt+(s.t==="말년"&&unk?'<br><span style="color:var(--ink-faint);font-size:13px">※ 태어난 시간을 몰라 말년 풀이는 참고만 하세요.</span>':'')+'</div></div>';});
+  return html+'</div>';
+}
+
 /* ══════════════ 인생 항목별 풀이 ══════════════ */
 function lifeDomains(a, p, gender){
   var sc=sipCounts(p), g=sc.g, male=(gender==="male");
@@ -1097,7 +1255,7 @@ function renderYongsin(y){
   var f=y.final,g=YONGSIN_GUIDE[f]||YONGSIN_GUIDE["수"];
   var html='<div class="explain" style="border-left-color:var('+ELEMENTS[f].varc+')">이 사주에 가장 필요한 기운, <strong class="hl">용신(用神)은 '+ELEMENTS[f].ko+'</strong>입니다. '+esc(y.reason)+'. 아래는 '+ELEMENTS[f].ko+' 기운을 일상에서 채우는 방법입니다 — 무리해서 다 할 필요 없이 마음 가는 것부터 곁에 두세요.'+
     '<span class="easy">나에게 부족해서 <b>채워주면 컨디션이 좋아지는 기운</b>이 '+ELEMENTS[f].ko+'이에요. 아래 목록은 그걸 생활 속에서 채우는 방법이에요. 전부 할 필요 없이 한두 개만 해도 돼요.</span><span class="why"><b>근거</b> 억부법(넘치면 덜고 모자라면 채움)으로 <b>'+ELEMENTS[f].ko+'</b>을 골랐습니다.</span></div>';
-  var chips=[{k:"🎨 색",v:g.color},{k:"🧭 방향",v:g.dir},{k:"🪴 소품",v:g.item},{k:"🏃 활동",v:g.act},{k:"🍽 음식",v:g.food},{k:"⚖ 기준",v:ELEMENTS[f].key}];
+  var chips=[{k:"🎨 색",v:g.color},{k:"🧭 방향",v:g.dir},{k:"🪴 소품",v:g.item},{k:"🏃 활동",v:g.act},{k:"🍽 음식",v:g.food},{k:"⚖ 기준",v:ELEMENTS[f].key},{k:"🔢 행운의 숫자",v:({"목":"3 · 8","화":"2 · 7","토":"5 · 10","금":"4 · 9","수":"1 · 6"})[f]},{k:"📅 행운의 요일",v:({"목":"목요일","화":"화요일","토":"토요일","금":"금요일","수":"수요일"})[f]}];
   html+='<div class="kaeun">';chips.forEach(function(c){html+='<div class="kchip"><div class="klab">'+c.k+'</div><div class="kval">'+esc(c.v)+'</div></div>';});
   return html+'</div>';
 }
@@ -1121,7 +1279,7 @@ function renderDaily(d,dateStr,yongEl){
   html+='</div><div class="warn"><b>참고</b> · 오늘의 운세는 당신의 <b>용신('+ELEMENTS[yongEl].ko+')</b>과 오늘 하루의 기운을 견줘 계산한 규칙 기반 참고값입니다.</div></div>';
   return html;
 }
-function panel(kanji,ko,inner){return '<section class="panel"><div class="eyebrow"><span class="kanji hanja">'+kanji+'</span><span class="ko">'+ko+'</span><span class="rule"></span></div>'+inner+'</section>';}
+function panel(kanji,ko,inner){return '<section class="panel"><div class="eyebrow"><span class="kanji hanja'+(kanji.length>1?' k2':'')+'">'+kanji+'</span><span class="ko">'+ko+'</span><span class="rule"></span></div>'+inner+'</section>';}
 
 var SIP_LONG={
   "비견":"주체성이 서고 독립·경쟁의 기운이 강해집니다. 내 힘으로 밀고 나가되, 동업·금전 관계는 선을 분명히 하세요.",
@@ -1194,6 +1352,9 @@ function renderCompat(A,B,res){
 function renderAll(a, ex){
   var dayGan=splitPillar(a.pillars.day).gan;
   var out="";
+  if(ex.p){var now2=new Date(), no=String((ex.p.dG*7+ex.p.dJ*13+ex.p.mJ*31+ex.bY)%9000+1000);
+    out+='<div class="report-head"><div class="rk">PREMIUM SAJU REPORT · No.'+no+'</div><div class="rt">'+esc(ex.label||'')+' 님의 사주 리포트</div><div class="rm">명식 <b>'+esc(a.pillars.year+' '+a.pillars.month+' '+a.pillars.day+' '+a.pillars.time)+'</b> · 발급일 '+now2.getFullYear()+'.'+(now2.getMonth()+1)+'.'+now2.getDate()+'</div>'+
+    '<div class="toc"><span>요약</span><span>성격</span><span>신살</span><span>직업</span><span>재물</span><span>애정</span><span>건강</span><span>집</span><span>인생 4단계</span><span>대운·세운</span><span>향후 6년</span><span>12개월</span></div></div>';}
   if(ex.unk) out+='<div class="warn" style="margin:0 0 14px"><b>태어난 시간을 몰라 정오(12시) 기준으로 계산했어요.</b> 시주(時柱)는 정확하지 않을 수 있어서, 성격·오행 개수 일부가 달라질 수 있어요. 나머지 흐름(연·월·일)은 그대로 믿고 보셔도 돼요.</div>';
   if(ex.summary) out+=panel("要約","한눈에 보기 — 그래서 나는 어떤 사람?", renderSummary(ex.summary,a));
   out+=panel("四柱","사주팔자 — 당신의 여덟 글자", renderPillars(a.pillars,a.ten_gods,a.twelve_unseong));
@@ -1202,12 +1363,14 @@ function renderAll(a, ex){
   out+=panel("用神","용신 — 당신에게 필요한 기운과 개운법", renderYongsin(a.yongsin));
   out+=panel("日元","일간 성격 · 삶의 틀", renderPersona(dayGan,a.gyeokguk,a.zodiac_animal,a.napeum_element));
   if(ex.pers) out+=panel("性","성격 자세히 — 겉과 속, 장점, 고치면 좋은 습관", renderPersonality(ex.pers,a));
+  if(ex.ss) out+=panel("神殺","타고난 특별한 별 — 신살 풀이", renderSinsal(ex.ss));
   out+=panel("六親","인생 항목별 풀이 — 연애·직업·재물·건강·인연", renderDomains(ex.domains));
   if(ex.career) out+=panel("職","직업·적성 자세히 — 무기·타입·맞는 일·타이밍", renderCareer(ex.career));
   if(ex.future) out+=panel("財","재물운 자세히 — 그릇·통로·구멍·좋은 해", renderWealth(a,ex.p,ex.future,ex.daeun,ex.age));
   if(ex.love) out+=panel("愛","애정운 자세히 — 연애 스타일·잘 맞는 상대·인연 오는 해", renderLove(ex.love));
   if(ex.health) out+=panel("健","건강운 자세히 — 약한 곳·계절·관리법", renderHealth(ex.health));
   if(ex.home) out+=panel("家","우리 집에 채우면 좋은 것 — 색·소재·공간별", renderHome(ex.home));
+  if(ex.stages) out+=panel("四季","인생 4단계 — 초년·청년·중년·말년", renderStages(ex.stages,ex.unk));
   out+=panel("大運","대운 — 10년 단위 인생의 큰 흐름", renderDaeun(ex.daeun, ex.age));
   out+=panel("歲運","세운 — 해마다의 흐름", renderSaeun(ex.saeun));
   if(ex.future) out+=panel("來","앞으로의 사주 — 향후 6년 · 12개월 예상", renderFuture(ex.future,ex.daeun,ex.age,ex.bY));
@@ -1264,7 +1427,7 @@ document.getElementById("saju-form").addEventListener("submit",function(ev){
     };
     ex.p=p; ex.bY=bY; ex.unk=unk; ex.future=futureFlow(a,p,gender,now.getFullYear(),now.getMonth()+1);
     ex.summary=summarize(a,p,gender,ex);
-    ex.pers=personality(a,p); ex.love=loveReport(a,p,gender,now.getFullYear()); ex.health=healthReport(a,p,ex.future); ex.home=homeReport(a); ex.career=careerReport(a,p,gender,now.getFullYear());
+    ex.pers=personality(a,p); ex.love=loveReport(a,p,gender,now.getFullYear()); ex.health=healthReport(a,p,ex.future); ex.home=homeReport(a); ex.career=careerReport(a,p,gender,now.getFullYear()); ex.ss=sinsal(a,p); ex.stages=lifeStages(a,p); ex.label=bY+"년 "+bMo+"월 "+bD+"일생";
     renderAll(a,ex);
   }catch(e){
     s.hidden=false;s.className="status err";s.innerHTML='<span class="st-title">계산 중 문제가 생겼습니다</span>입력한 날짜·시간을 확인하고 다시 시도해주세요. ('+esc(e.message||e)+')';
